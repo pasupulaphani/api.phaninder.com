@@ -1,0 +1,19 @@
+
+extends ../layout
+
+block content
+	action = post ? "/posts/"+post._id : "/posts"
+	_method = post ? "put" : "post"
+	title = post ? post.title : ''
+	body = post ? post.body : ''
+	form(method="post", action=action)
+		input(type="hidden", name="_method", value=_method)
+		ul
+			li
+				lable(for="title") Title
+				input#title(name="title", value=title)
+			li
+				lable(for="body") Body
+				textarea#body(name="body")= body
+			li
+				input(type="submit", value="save")

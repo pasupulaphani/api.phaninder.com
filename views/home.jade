@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	if (session.isLoggedIn)
+		p
+			a(href="posts/new") New Post
+	if !(posts && posts.length)
+		p Nothing to disp ATM
+	else
+		ul.posts
+			each post in posts
+				li
+					h2
+						a(href="/posts/#{post.id}")= post.title

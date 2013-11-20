@@ -1,0 +1,13 @@
+
+extends ../layout
+
+block content
+	h2= post.title
+	p= post.body
+	span= post.created.toGMTString()
+	p by #{post.user._id}
+	// delete
+	form(name="deletePost", action="/posts/#{post._id}", method="post")
+		input(type="hidden", name="_method", value="delete")
+		input(type="submit", value="Delete Post")
+	a(href="/posts/#{post._id}/edit")= "Edit"

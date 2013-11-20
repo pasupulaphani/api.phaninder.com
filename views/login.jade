@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	form(method="post", action="/login", enctype='application/x-www-form-urlencoded')
+		h3 Login
+		if invalid
+			.error Please enter valid details
+		ul
+			li
+				label(for='email') Email
+				input#email(name='email')
+			li
+				label(for='pass') Password
+				input#password(name='pass', type='password')
+		input(type='submit', value='Login')
