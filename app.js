@@ -2,19 +2,22 @@
 var mongoose = require('mongoose');
 var express = require('express');
 
+var config = require('./config')();
+var configUtil = require('./helpers/configUtil.js');
+
 var models = require('./models');
 var routes = require('./routes');
 var middleware = require('./middleware');
 
-mongoose.connect('mongodb://localhost/myblog', function(err) {
+mongoose.connect(configUtil.getDBURL(config), function(err) {
 	if (err) throw err;
 
 	var app = express();
 
-	middleware(app);
+	middleware(app, config);
 	routes(app);
 
-	app.listen(3000, function() {
-		console.log('listening on port 3000');
+	app.listen(process.env.port, function() {
+		console.log('listening on port ' + process.env.port);
 	});
 });

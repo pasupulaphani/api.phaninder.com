@@ -1,6 +1,7 @@
 
-var myEsc = require('./escape.js');
+var configUtil = require('./configUtil.js');
 
-var title = "{ 'Ich ♥ Büc_her':_ --__'foo 𝌆 bar' }"
+var config = require('../config')();
+console.log(config.secret);
 
-console.log(myEsc.urlSeoEsc(title));
+console.log(configUtil.getDBURL(config));

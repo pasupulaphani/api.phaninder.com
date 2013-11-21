@@ -36,9 +36,7 @@ module.exports = function (app) {
 	app.get('/posts/:id/edit', loggedIn, function (req, res, next) {
 		var id = req.param('id');
 
-		var queryBuilder = Post.findById(id, function (err, doc) {
-			console.log(doc);
-		});
+		var queryBuilder = Post.findById(id);
 		queryBuilder.populate('user');
 
 		queryBuilder.exec(function (err, post) {
