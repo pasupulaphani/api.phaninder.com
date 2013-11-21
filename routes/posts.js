@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 
 var loggedIn = require('../middleware/loggedIn');
-var myEsc = require('../helpers/escape.js');
+var myEsc    = require('../helpers/escape.js');
 
 module.exports = function (app) {
 
