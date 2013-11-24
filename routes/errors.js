@@ -1,12 +1,13 @@
 
 module.exports = function(app) {
+var logger = require('../lib/logger');
 
 	// 404s
 	app.use(function(req, res, next) {
 		res.status(404);
 
 		if (req.accepts('html')) {
-			return res.send("<h2>404 : Page not found</h2>");
+			return res.render('404.jade', {title: '404: Page Not Found'});
 		}
 
 		if (req.accepts('json')) {
@@ -20,6 +21,8 @@ module.exports = function(app) {
 	// 500
 	app.use(function(err, req, res, next) {
 		console.log('error at %s\n', req.url, err);
-		res.send('500 : An internal error occured')
+		res.status(500);
+		res.render('500.jade', {title:'500: An internal error occured', error: err.stack});
+		logger.error(err)
 	})
 }

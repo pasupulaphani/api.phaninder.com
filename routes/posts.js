@@ -9,7 +9,10 @@ module.exports = function (app) {
 
 	// get all posts : index
 	app.get('/posts', loggedIn, function (req, res, next) {
-		res.redirect("/");
+		Post.find().sort('created').exec(function (err, posts) {
+			if (err) throw next(err);
+			res.render('home.jade', {posts: posts});
+		});
 	});
 
 	// show the post : show
