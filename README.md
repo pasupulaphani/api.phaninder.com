@@ -28,7 +28,7 @@ Required /etc/env.config format.
     			"password": "",
     			"collection": "mySessions"
     		},
-    		"secret": "076ee61d63aa10a125ea872411e433b9",
+    		"secret": "yourSecretKey",
     		"logSettings": {
     			"stdoutLevel": "error",
     			"logFile": "/home/phani/myblog.log",
@@ -36,7 +36,6 @@ Required /etc/env.config format.
     		}
     	},
     	"production": {
-    		"db": "MongoDB",
-    		"session_store": "MongoStore"
+            "same goes here": "fill with production settings"
     	}
     }
