@@ -1,20 +1,20 @@
 {
   "name": "blog",
   "private": true,
-  "version": "0.0.0",
-  "description": "blog ====",
+  "version": "0.1.0",
+  "description": "phaninder.com ====",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/pasupulaphani/blog.git"
+    "url": "git://github.com/pasupulaphani/phaninder.com.git"
   },
   "author": "",
   "license": "BSD",
   "bugs": {
-    "url": "https://github.com/pasupulaphani/blog/issues"
+    "url": "https://github.com/pasupulaphani/phaninder.com/issues"
   },
   "dependencies": {
     "mongoose": "~3.6.20",
@@ -23,5 +23,8 @@
     "email-validator": "~0.1.2",
     "connect-mongo": "~0.4.0",
     "bunyan": "~0.22.0"
+  },
+  "devDependencies": {
+    "vows": "~0.7.0"
   }
 }
