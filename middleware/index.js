@@ -29,7 +29,16 @@ module.exports = function (app, config) {
 	app.use(express.methodOverride());
 
 	app.use(function (req, res, next) {
-		logger.info({req: req}, 'start request');
+
+		// action after response
+		var afterResponse = function() {
+			logger.info({req: req}, "End request");
+		}
+		res.on('finish', afterResponse);
+		res.on('close', afterResponse);
+
+		// actions before response
+		logger.info({req: req}, "Start request");
 
 		// expose sessions to views
 		res.locals.session = req.session;

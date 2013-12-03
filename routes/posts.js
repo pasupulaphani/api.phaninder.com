@@ -4,6 +4,7 @@ var Post = mongoose.model('Post');
 
 var loggedIn = require('../middleware/loggedIn');
 var myEsc    = require('../helpers/escape.js');
+var logger   = require('../lib/logger');
 
 module.exports = function (app) {
 
@@ -62,6 +63,7 @@ module.exports = function (app) {
 		var body = req.param('body');
 		var user = req.session.user;
 
+		logger.info({req: req}, 'Creating post: %s', title);
 		Post.create({
 			_id : myEsc.urlSeoEsc(title).toLowerCase(),
 			title : title,
@@ -104,6 +106,7 @@ module.exports = function (app) {
 	app.delete('/posts/:id', loggedIn, function (req, res, next) {
 		var id = req.param('id');
 
+		logger.info({req: req}, 'Deleting post: %s', id);
 		Post.findOne({_id: id}, function (err, post) {
 			if (err) return next(err);
 
