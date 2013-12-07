@@ -1,5 +1,5 @@
-
 module.exports = function(app) {
+
 var logger = require('../logger');
 
 	// 404s

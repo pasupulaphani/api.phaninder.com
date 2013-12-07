@@ -1,4 +1,4 @@
-var users = require('../../app/controllers/login');
+var users = require('../../app/controllers/users');
 
 module.exports = function (app) {
 
