@@ -20,7 +20,7 @@ module.exports = function (app, config) {
 	app.use(express.cookieParser());
 	app.use(express.session({
 		secret: config.secret,
-		maxAge: new Date(Date.now() + 3600000),
+		maxAge: new Date(Date.now() + 36000),
 		store: new MongoStore(config.MongoStore)
 	}));
 	app.use(express.bodyParser());

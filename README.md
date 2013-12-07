@@ -20,13 +20,14 @@ Required /etc/env.config format.
     			"username": "",
     			"password": ""
     		},
-    		"MongoStore": {
-    			"db": "myblog",
+    		"MongoStore": {                  // Store is connect-mongo module
+    			"db": "myblog",              // http://kcbanner.github.io/connect-mongo/
     			"host": "localhost",
     			"port": "27017",
     			"username": "",
     			"password": "",
-    			"collection": "mySessions"
+    			"collection": "mysessions",
+                "clear_interval": 3600
     		},
     		"secret": "yourSecretKey",
     		"logSettings": {
