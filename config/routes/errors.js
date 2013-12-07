@@ -1,6 +1,6 @@
 
 module.exports = function(app) {
-var logger = require('../lib/logger');
+var logger = require('../logger');
 
 	// 404s
 	app.use(function(req, res, next) {

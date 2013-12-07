@@ -2,18 +2,18 @@
 var mongoose   = require('mongoose');
 var express    = require('express');
 
-var config     = require('./lib/config');
-var configUtil = require('./helpers/configUtil.js');
+var config     = require('./config/config');
+var configUtil = require('./app/helpers/configUtil.js');
 
-var models     = require('./models');
-var routes     = require('./routes');
-var middleware = require('./middleware');
+var models     = require('./app/models');
+var routes     = require('./config/routes');
+var middleware = require('./config/express');
 
 mongoose.connect(configUtil.getDBURL(config), function(err) {
 	if (err) throw err;
 
 	var app = express();
-	app.locals.app_dir = __dirname;
+	app.locals.home_dir = __dirname;
 
 	middleware(app, config);
 	routes(app);

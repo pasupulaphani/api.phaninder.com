@@ -1,15 +1,18 @@
-
 var express    = require('express');
 var MongoStore = require('connect-mongo')(express);
 var path       = require('path');
-var logger = require('../lib/logger');
+var logger     = require('../config/logger');
 
 
 module.exports = function (app, config) {
 
-	var static_dir = path.join(app.locals.app_dir + '/public');
+	var static_dir = path.join(app.locals.home_dir + '/public');
 	app.use(express.static(static_dir));
-	app.use(express.favicon(static_dir + '/images/favicon.ico'));
+	app.use(express.favicon(static_dir + '/favicon.ico'));
+
+	//Set views path, template engine and default layout
+	app.set('views', app.locals.home_dir + '/app/views');
+	app.set('view engine', 'jade');
 
 	// basic express logger. Useful for dubugging locally on stdout
 	if (config.mode === 'dev') {
