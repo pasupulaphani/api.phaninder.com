@@ -59,6 +59,7 @@ exports.create = function (req, res, next) {
 	var body = req.param('body');
 	var user = req.session.user;
 
+	if (!title) throw new Error('title is must');
 	logger.info({req: req}, 'Creating post: %s', title);
 	Post.create({
 		_id : myEsc.urlSeoEsc(title).toLowerCase(),
