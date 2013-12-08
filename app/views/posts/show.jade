@@ -1,5 +1,4 @@
-
-extends ../layout
+extends ../layout/top
 
 block content
 	h2= post.title
@@ -11,3 +10,5 @@ block content
 		input(type="hidden", name="_method", value="delete")
 		input(type="submit", value="Delete Post")
 	a(href="/posts/#{post._id}/edit")= "Edit"
+
+	include ../layout/bottom

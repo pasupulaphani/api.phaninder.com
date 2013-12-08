@@ -44,7 +44,12 @@ module.exports = function (app, config) {
 		logger.info({req: req}, "Start request");
 
 		// expose sessions to views
-		res.locals.session = req.session;
+		res.locals = {
+			session : req.session,
+			site    : config.site,
+			mode    : config.mode
+		};
+
 		next();
 	})
 

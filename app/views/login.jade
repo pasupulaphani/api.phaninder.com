@@ -1,4 +1,4 @@
-extends layout
+extends layout/top
 
 block content
 	form(method="post", action="/login", enctype='application/x-www-form-urlencoded')
@@ -13,3 +13,5 @@ block content
 				label(for='pass') Password
 				input#password(name='pass', type='password')
 		input(type='submit', value='Login')
+
+	include layout/bottom

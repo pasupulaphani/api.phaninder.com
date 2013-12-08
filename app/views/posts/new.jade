@@ -1,5 +1,4 @@
-
-extends ../layout
+extends ../layout/top
 
 block content
 	action = post ? "/posts/"+post._id : "/posts"
@@ -17,3 +16,5 @@ block content
 				textarea#body(name="body")= body
 			li
 				input(type="submit", value="save")
+
+	include ../layout/bottom

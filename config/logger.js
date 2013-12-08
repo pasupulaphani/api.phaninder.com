@@ -3,7 +3,7 @@ var config = require('./config');
 var logSettings = config.logSettings;
 
 var Logger = bunyan.createLogger({
-  name: config.app_name,
+  name: config.site.name,
   src: true,
   streams : [
     {
