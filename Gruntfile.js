@@ -3,33 +3,33 @@ module.exports = function(grunt) {
 
 	// All upfront config goes in a massive nested object.
 	grunt.initConfig({
-	srcFolder: 'public/js/src',
-	distFolder: 'public/js',
-	distFile: 'main.js',
-	minFile: 'main.min.js',
+		srcFolder: 'public/js/src',
+		distFolder: 'public/js',
+		distFile: 'main.js',
+		minFile: 'main.min.js',
 
-	// Allows us to reference properties we declared in package.json.
-	pkg: grunt.file.readJSON('package.json'),
+		// Allows us to reference properties we declared in package.json.
+		pkg: grunt.file.readJSON('package.json'),
 
-	concat: {
-		options: {
-			separator: ';'
+		concat: {
+			options: {
+				separator: ';'
+			},
+			dist: {
+				src: ['<%= srcFolder %>/*.js'],
+				dest: '<%= distFolder %>/<%= distFile %>'
+			}
 		},
-		dist: {
-			src: ['<%= srcFolder %>/*.js'],
-			dest: '<%= distFolder %>/<%= distFile %>'
-		}
-	},
 
-	uglify: {
-		min: {
-			files: [{
-				src: '<%= distFolder %>/<%= distFile %>',
-				dest: '<%= distFolder %>/<%= minFile %>'
-			}]
-		}
-	},
-	// Still to configure
+		uglify: {
+			min: {
+				files: [{
+					src: '<%= distFolder %>/<%= distFile %>',
+					dest: '<%= distFolder %>/<%= minFile %>'
+				}]
+			}
+		},
+		// Still to configure
 		jshint: {
 			src: ['Gruntfile.js', 'routes/**/*.js'],
 			options: {
