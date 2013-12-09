@@ -1,17 +1,25 @@
-extends layout/top
-
-block content
-	form(method="post", action="/login", enctype='application/x-www-form-urlencoded')
-		h3 Login
-		if invalid
-			.error Please enter valid details
-		ul
-			li
-				label(for='email') Email
-				input#email(name='email')
-			li
-				label(for='pass') Password
-				input#password(name='pass', type='password')
-		input(type='submit', value='Login')
-
-	include layout/bottom
+nav.top-bar(data-topbar='data-topbar', data-options="is_hover: false")
+	section.top-bar-login-section
+		if (!session.isLoggedIn)
+			form(method="post", action="/login", enctype='application/x-www-form-urlencoded')
+				ul.right
+					li
+						label(for='email') Email
+					li
+						.large-4.columns
+							input#email(name='email', type='text')
+					li
+						label(for='pass') Password
+					li
+						.large-4.columns
+							input#password(name='pass', type='password')
+					li
+						.large-4.small-3.columns
+							input.button.expand(type='submit', value='Login') Login
+							if invalid
+								small.error Please enter valid details
+		else
+				ul.right
+					li
+						.large-4.small-3.columns
+							a.alert.button.expand(href='/logout', value='Logout') Logout

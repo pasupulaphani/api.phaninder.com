@@ -8,17 +8,7 @@ html(class="js no-touch svg inlinesvg svgclippaths no-ie8compat \
 		include ./head
 	body#page.off-canvas.hide-extras
 		.container
+			include ./../login
 			header.intro
-				h1= pageTitle
 				include ./header
-			section.login
-				ul
-					if session.isLoggedIn
-						li
-							a(href="/logout") Logout
-					else
-						li
-							a(href="/login") Login
-						li
-							a(href="/signup") Signup
 			block content

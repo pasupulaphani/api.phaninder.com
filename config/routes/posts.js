@@ -3,8 +3,8 @@ var loggedIn = require('../middleware/loggedIn');
 
 module.exports = function (app) {
 
-	app.get('/posts', loggedIn, posts.all);
-	app.get('/posts/:id', loggedIn, posts.show);
+	app.get('/posts', posts.all);
+	app.get('/posts/:id', posts.show);
 	app.get('/posts/new', loggedIn, posts.new);
 	app.get('/posts/:id/edit', loggedIn, posts.edit);
 

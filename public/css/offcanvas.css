@@ -243,3 +243,7 @@ background-image: linear-gradient(#ffffff, #ffffff) !important;
 #file-test1-js-LC1 {
 
 }
+
+/*this is to override default behaviour of hoveringon "top-bar"*/
+.top-bar-login-section ul > li.active:hover { background: #222222; cursor: default; }
+.top-bar-login-section ul > li:hover { background: #222222; }
