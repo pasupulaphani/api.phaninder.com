@@ -9,7 +9,7 @@ html(class="js no-touch svg inlinesvg svgclippaths no-ie8compat \
 	body#page.off-canvas.hide-extras
 		.container
 			if (loginShow || session.isLoggedIn)
-				include ./../login
+				include ./../users/login
 			header.intro
 				include ./header
 			block content

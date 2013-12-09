@@ -12,7 +12,7 @@ exports.loginShow = function (req, res) {
 
 
 exports.createShow = function (req, res) {
-	res.render('signup.jade');
+	res.render('users/signup.jade');
 };
 
 
@@ -27,7 +27,7 @@ exports.create = function (req, res, next) {
 		if (err) throw next(err);
 
 		if (user) {
-			return res.render('signup.jade', {exists: true});
+			return res.render('users/signup.jade', {exists: true});
 		}
 
 		crypto.randomBytes(16, function (err, bytes) {
@@ -56,7 +56,7 @@ exports.create = function (req, res, next) {
 	});
 
 	function invalid() {
-		res.render('signup.jade', {invalid: true});
+		res.render('users/signup.jade', {invalid: true});
 	}
 };
 

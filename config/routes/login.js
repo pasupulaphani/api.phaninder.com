@@ -2,8 +2,9 @@ var users = require('../../app/controllers/users');
 
 module.exports = function (app) {
 
-	app.get('/signup', users.createShow);
-	app.post('/signup', users.create);
+	// Shouldn't require this unless you screwed database
+	// app.get('/signup', users.createShow);
+	// app.post('/signup', users.create);
 
 	app.get('/login', users.loginShow);
 	app.post('/login', users.login);

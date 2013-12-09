@@ -1,4 +1,4 @@
-extends layout/top
+extends ../layout/top
 
 block content
 	form(method="post", action="/signup", enctype='application/x-www-form-urlencoded')
@@ -19,4 +19,4 @@ block content
 				input#password(name='pass', type='password')
 		input(type='submit', value='Sign Up')
 
-	include layout/bottom
+	include ../layout/bottom
