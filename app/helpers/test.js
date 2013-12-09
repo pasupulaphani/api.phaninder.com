@@ -1,7 +1,6 @@
 
 var configUtil = require('./configUtil.js');
 
-var config = require('../lib/config');
-console.log(config.secret);
+var config = require('../../config/config');
+console.log(config.staticJSDependencies);
 
-console.log(configUtil.getDBURL(config));

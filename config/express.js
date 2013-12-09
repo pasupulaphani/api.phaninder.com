@@ -50,6 +50,10 @@ module.exports = function (app, config) {
 			mode    : config.mode
 		};
 
+		if (config.mode === 'dev') {
+			res.locals.staticJs = config.staticJSDependencies
+		}
+
 		next();
 	})
 

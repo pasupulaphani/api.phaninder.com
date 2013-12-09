@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git://github.com/pasupulaphani/phaninder.com.git"
   },
-  "author": "",
+  "author": "Phaninder",
   "license": "BSD",
   "bugs": {
     "url": "https://github.com/pasupulaphani/phaninder.com/issues"
@@ -30,5 +30,21 @@
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-jshint": "~0.7.2",
     "grunt-contrib-uglify": "~0.2.7"
-  }
+  },
+  "staticJSDependencies": [
+    "public/js/src/jquery.js",
+    "public/js/src/jquery.foundation.reveal.js",
+    "public/js/src/jquery.foundation.orbit.js",
+    "public/js/src/jquery.foundation.forms.js",
+    "public/js/src/jquery.placeholder.js",
+    "public/js/src/jquery.foundation.tooltips.js",
+    "public/js/src/jquery.foundation.alerts.js",
+    "public/js/src/jquery.foundation.buttons.js",
+    "public/js/src/jquery.foundation.accordion.js",
+    "public/js/src/jquery.foundation.navigation.js",
+    "public/js/src/jquery.foundation.mediaQueryToggle.js",
+    "public/js/src/jquery.foundation.tabs.js",
+    "public/js/src/jquery.offcanvas.js",
+    "public/js/src/app.js"
+  ]
 }

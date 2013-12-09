@@ -16,7 +16,8 @@ module.exports = function(grunt) {
 				separator: ';'
 			},
 			dist: {
-				src: ['<%= srcFolder %>/*.js'],
+				// should pass src js files as list to avoid dependency issues
+				src: '<%= pkg.staticJSDependencies %>',
 				dest: '<%= distFolder %>/<%= distFile %>'
 			}
 		},
