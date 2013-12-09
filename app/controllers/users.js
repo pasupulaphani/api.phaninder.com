@@ -6,6 +6,11 @@ var hash        = require('../helpers/hash');
 var crypto      = require('crypto');
 
 
+exports.loginShow = function (req, res) {
+	res.render('home.jade', {loginShow: true});
+};
+
+
 exports.createShow = function (req, res) {
 	res.render('signup.jade');
 };
@@ -80,7 +85,13 @@ exports.login = function (req, res) {
 	});
 
 	function invalid() {
-		res.render('home.jade', {invalid: true});
+		res.render(
+			'home.jade',
+			{
+				invalid: true,
+				loginShow: true
+			}
+		);
 	}
 };
 
