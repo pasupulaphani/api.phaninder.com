@@ -1,6 +1,12 @@
 extends layout/top
 
 block content
-	h1= title
-	p Dude, where is my page?
-	a(href='/') Take me to the homepage!
+	.row#four04
+		section(role='main')
+			#post.row
+				.eight.columns
+					h1= title
+					p Dude, where is my page?
+					a(href='/') Take me to the homepage!
+
+	include layout/bottom

@@ -1,37 +1,23 @@
-nav.top-bar(data-topbar='data-topbar', data-options="is_hover: false")
-	section.top-bar-login-section
-		if (!session.isLoggedIn)
-			form(method="post", action="/login", enctype='application/x-www-form-urlencoded')
-				ul.right
-					li
-						label(for='email') Email
-					li
-						.large-4.columns
-							input#email(name='email', type='text')
-					li
-						label(for='pass') Password
-					li
-						.large-4.columns
-							input#password(name='pass', type='password')
-					li
-						.large-4.small-3.columns
-							input.button.expand(type='submit', value='Login') Login
-							if invalid
-								small.error Please enter valid details
-		else
-				ul.right
-					li.has-dropdown
-						a(href='#') Posts
-						ul.dropdown
-							li
-								a(href='posts?status=T') Trashed
-							li
-								a(href='posts?status=U') Under construction
-							li
-								a(href='posts?status=Y') Displayed
-					li
-						.large-4.small-3.columns
-							a.button.expand(href='/posts/new', value='New Post') New Post
-					li
-						.large-4.small-3.columns
-							a.alert.button.expand(href='/logout', value='Logout') Logout
+if (!session.isLoggedIn)
+	form(method="post", action="/login", enctype='application/x-www-form-urlencoded')
+		ul.right
+			li
+				label(for='email') Email
+			li
+				.large-4.columns
+					input#email(name='email', type='text')
+			li
+				label(for='pass') Password
+			li
+				.large-4.columns
+					input#password(name='pass', type='password')
+			li
+				.large-4.small-3.columns
+					input.button.expand(type='submit', value='Login') Login
+					if invalid
+						small.error Please enter valid details
+else
+	ul.right
+		li
+			.large-4.small-3.columns
+				a.alert.button.expand(href='/logout', value='Logout') Logout

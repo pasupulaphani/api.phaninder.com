@@ -109,7 +109,7 @@ form .post-search-input {
 	box-shadow: 0 1px 0 rgba(255,255,255,0.75),inset 0 2px 4px rgba(0,0,0,0.1);
 }
 
-#post h1 {
+#post h1, #findme h1 {
 	color: #2c251d;
 	font-size: 2.2em;
 	font-weight: 700;
@@ -193,6 +193,7 @@ text-align: center;
 	menu-button, .sidebar-button { display: none; }
 	[role="complementary"] { width: 20%; margin-left: 0; float: left; padding: 0 15px; }
 	[role="main"] { width: 80%; padding: 0 15px; }
+	[role="findme"] { width: 85%; padding: 0 15px; float: right;}
 	.paneled [role="main"] { width: 100%; padding: 0; background: #f4f4f4; left: 0 !important; }
 	.page-panel { display: block; min-height: 800px; float: none; margin: 0; width: 100%; background: #f4f4f4; }
 	.hide-extras [role="main"] { width: 85%; }
@@ -247,3 +248,7 @@ background-image: linear-gradient(#ffffff, #ffffff) !important;
 /*this is to override default behaviour of hoveringon "top-bar"*/
 .top-bar-login-section ul > li.active:hover { background: #222222; cursor: default; }
 .top-bar-login-section ul > li:hover { background: #222222; }
+
+#four04 {
+	height: 250px;
+}
