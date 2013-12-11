@@ -2,7 +2,7 @@ extends ../layout/top
 
 block content
 	action = post ? "/posts/"+post._id : "/posts"
-	_method = post ? "put" : "post"
+	_method = post ? "post" : "put"
 	title = post ? post.title : ''
 	body = post ? post.body : ''
 	form(method="post", action=action)

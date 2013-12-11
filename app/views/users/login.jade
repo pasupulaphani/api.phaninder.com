@@ -20,9 +20,18 @@ nav.top-bar(data-topbar='data-topbar', data-options="is_hover: false")
 								small.error Please enter valid details
 		else
 				ul.right
+					li.has-dropdown
+						a(href='#') Posts
+						ul.dropdown
+							li
+								a(href='posts?status=T') Trashed
+							li
+								a(href='posts?status=U') Under construction
+							li
+								a(href='posts?status=Y') Displayed
 					li
 						.large-4.small-3.columns
-							a.button.expand(href='posts/new', value='New Post') New Post
+							a.button.expand(href='/posts/new', value='New Post') New Post
 					li
 						.large-4.small-3.columns
 							a.alert.button.expand(href='/logout', value='Logout') Logout

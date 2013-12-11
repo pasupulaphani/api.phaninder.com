@@ -6,7 +6,11 @@ var logger   = require('../../config/logger');
 
 // get all posts : index
 exports.all = function (req, res, next) {
-	Post.find().sort('created').exec(function (err, posts) {
+	var status = req.param('status') ? req.param('status') : 'Y'
+
+	if (!req.session.user && status != 'Y') return next(); // 404
+
+	Post.find({'status':status}).sort('created').exec(function (err, posts) {
 		if (err) throw next(err);
 		res.render('home.jade', {posts: posts});
 	});
@@ -21,7 +25,7 @@ exports.show = function (req, res, next) {
 	queryBuilder.exec(function (err, post) {
 		if (err) return next(err);
 
-		if (!post) return next(); // 404
+		if (!post || (!req.session.user && post.status != 'Y')) return next(); // 404
 
 		res.render('posts/show.jade', { post: post});
 	});
@@ -88,11 +92,36 @@ exports.update = function (req, res, next) {
 
 		post.update({
 			title: req.param('title'),
-			body: req.param('body')
+			body: req.param('body'),
+			modified: Date.now
 		}, function (err, numAffected) {
 			if (err) return next(err);
 			if (0 === numAffected) return next(err);
 			res.redirect("/posts/"+id);
+		});
+	});
+};
+
+// set status of a post: see Post model
+exports.setStatus = function (req, res, next) {
+	var id = req.param('id');
+
+	Post.findOne({_id: id}, function (err, post) {
+		if (err) return next(err);
+
+		// valid user
+		if (post.user != req.session.user) {
+			return res.send(403);
+		}
+
+		var query = {_id: id, user: req.session.user}
+
+		post.update({
+			status: req.param('status')
+		}, function (err, numAffected) {
+			if (err) return next(err);
+			if (0 === numAffected) return next(err);
+			res.redirect("/posts/" + id);
 		});
 	});
 };
