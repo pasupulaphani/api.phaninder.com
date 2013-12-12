@@ -252,3 +252,8 @@ background-image: linear-gradient(#ffffff, #ffffff) !important;
 #four04 {
 	height: 250px;
 }
+
+dt.h5 {
+	font-size: 17px;
+	font-weight: bold !important;
+}

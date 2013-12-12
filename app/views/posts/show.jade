@@ -10,15 +10,35 @@ block content
 					span= post.created.toGMTString()
 					p by #{post.user._id}
 					if (loginShow || session.isLoggedIn)
+
 						// delete should never be used
 						//- form(name="deletePost", action="/posts/#{post._id}", method="post")
 						//- 	input(type="hidden", name="_method", value="delete")
 						//- 	input(type="submit", value="Delete Post")
 
-						// todo : change this to set status.
-						form(name="trashPost", action="/posts/#{post._id}/status", method="post")
-							input(type="hidden", name="status", value="Y")
-							input(type="submit", value="Move to trash")
-						a(href="/posts/#{post._id}/edit")= "Edit"
+						section#set-status
+							script.
+								function setPostStatus(state) {
+									document.postStatusForm.status.value = state;
+									document.postStatusForm.submit();
+								}
+
+							form(name="postStatusForm", action="/posts/#{post._id}/status", method="post")
+								input(type="hidden", id="status", name="status", value="")
+
+							dl.sub-nav
+									dt.h5 Move to:
+										- var status_info = {	U:"Under construction", Y:"Display", T:"Trash"}
+										- for (var state in status_info) {
+											-	if (post.status === state)
+													dd.active
+														a= status_info[state]
+											- else
+													dd
+														a(href="javascript: setPostStatus('#{state}')")= status_info[state]
+										- }
+
+						section#post-edit
+							a.button(href="/posts/#{post._id}/edit")= "Edit"
 
 	include ../layout/bottom

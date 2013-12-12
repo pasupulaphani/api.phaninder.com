@@ -105,6 +105,9 @@ exports.update = function (req, res, next) {
 // set status of a post: see Post model
 exports.setStatus = function (req, res, next) {
 	var id = req.param('id');
+	var status = req.param('status');
+
+	if (["Y", "U", "T"].indexOf(status) == -1) throw new Error('status must be Y, U or T');
 
 	Post.findOne({_id: id}, function (err, post) {
 		if (err) return next(err);
@@ -117,7 +120,7 @@ exports.setStatus = function (req, res, next) {
 		var query = {_id: id, user: req.session.user}
 
 		post.update({
-			status: req.param('status')
+			status: status
 		}, function (err, numAffected) {
 			if (err) return next(err);
 			if (0 === numAffected) return next(err);
