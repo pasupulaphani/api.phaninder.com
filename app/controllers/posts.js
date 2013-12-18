@@ -93,7 +93,7 @@ exports.update = function (req, res, next) {
 		post.update({
 			title: req.param('title'),
 			body: req.param('body'),
-			modified: Date.now
+			modified: Date.now()
 		}, function (err, numAffected) {
 			if (err) return next(err);
 			if (0 === numAffected) return next(err);

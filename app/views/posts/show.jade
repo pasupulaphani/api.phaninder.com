@@ -35,10 +35,12 @@ block content
 														a= status_info[state]
 											- else
 													dd
-														a(href="javascript: setPostStatus('#{state}')")= status_info[state]
+														//-	if just href="#" is used you will jump to the top and the URL will have the anchor # as well,
+														//-	to avoid this we simply return false; or use javascript:void(0);
+														a(onclick="setPostStatus('#{state}')", href="javascript: void()")= status_info[state]
 										- }
 
 						section#post-edit
-							a.button(href="/posts/#{post._id}/edit")= "Edit"
+							a.button(href="/posts/#{post._id}/edit")= "Edit Post"
 
 	include ../layout/bottom
