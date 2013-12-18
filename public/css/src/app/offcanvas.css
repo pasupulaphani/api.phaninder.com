@@ -1,6 +1,28 @@
 
 body.off-canvas { padding: 0; margin: 0; }
 
+.top-bar label {
+	padding-top: 10px;
+	color: #FFFFFF;
+}
+
+.top-bar input, .top-bar .button {
+	font-size: 0.77778rem;
+	position: relative;
+	top: 7px;
+}
+
+.top-bar input {
+	height: auto;
+	padding-top: 0.35rem;
+	padding-bottom: 0.35rem;
+	font-size: 0.75rem;
+}
+
+.top-bar form, .top-bar input {
+	margin-bottom: 0;
+}
+
 header.intro {
 	width: 100%;
 	line-height: 1.4;

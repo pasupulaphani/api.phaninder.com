@@ -1,33 +1,34 @@
 header.intro
   .row
-      .two.columns.phone-two
-        h1#site-title
-          //
-             none ATM 
-      .ten.columns.phone-two.intro
+    .large-8.phone-two.intro
+      .large-2.header-medium-2.columns
+        img.hide-for-small-only(src='/images/gavatar.jpeg')
+      .small-8
         h1
           | Phani Pasupula
           a(href='http://twitter.com/pasupulaphani')  @pasupulaphani
-        h2.hide-for-small
+        h2.hide-for-small-only
           span
             | Developer in Ruby, NodeJs enthusiast.
             br
             | Runner, Hicker, Developer.
-#left-nav.three.columns.phone-two.hide-for-small
-  dl.sub-nav
-    dd
-      a#home.fi-home.size-36(href='/')
-    dd
-      //a.fi-rss.size-36(href="/posts.xml") N/A 
-#header-nav.six.columns.phone-two
-  dl.sub-nav
-    dd(title='About')
-      a(href='/about')
-        img(src='/images/about-icon.jpg')
-        span About
-    dd(title='Posts')
-      a.fi-page.size-36(href='/posts')   
-      a(href='/posts')
-        span Posts
-    dd
-      a#sidebarButton.fi-page-search.size-36(href='#sidebar')
+.row
+  #left-nav.two.columns.phone-two.hide-for-small
+    dl.sub-nav
+      dd
+        a#home.fi-home.size-36(href='/')
+      dd
+        //
+          a.fi-rss.size-36(href="/posts.xml") N/A 
+  #header-nav.large-10.medium-10.small-12.columns
+    dl.sub-nav
+      dd(title='About')
+        a.fi-torso-business.size-36(href='/about')
+          a(href='/about')
+            span  About
+      dd(title='Posts')
+        a.fi-page-multiple.size-36(href='/posts')
+        a(href='/posts')
+          span  Posts
+      dd
+        a#sidebarButton.fi-page-search.size-36(href='#sidebar')

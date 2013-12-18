@@ -1,23 +1,19 @@
 if (!session.isLoggedIn)
 	form(method="post", action="/login", enctype='application/x-www-form-urlencoded')
 		ul.right
-			li
+			li.has-form
 				label(for='email') Email
-			li
-				.large-4.columns
+			li.has-form
 					input#email(name='email', type='text')
-			li
+			li.has-form
 				label(for='pass') Password
-			li
-				.large-4.columns
+			li.has-form
 					input#password(name='pass', type='password')
-			li
-				.large-4.small-3.columns
-					input.button.expand(type='submit', value='Login') Login
+			li.has-form
+					input.button(type='submit', value='Login') Login
 					if invalid
 						small.error Please enter valid details
 else
 	ul.right
-		li
-			.large-4.small-3.columns
-				a.alert.button.expand(href='/logout', value='Logout') Logout
+		li.has-form
+			a.alert.button.expand(href='/logout', value='Logout') Logout
