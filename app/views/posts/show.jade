@@ -1,14 +1,23 @@
 extends ../layout/top
 
 block content
+	script.
+		function parsePostBody() {
+			content = unescape($("#raw-post-body").html());
+			html = $.parseHTML(content);
+			console.log("ppasu55" + html);
+			$("#post-body").append(html);
+		}
 	.row
 		section(role='main')
 			#post.row
 				.large-8.columns
 					h1= post.title
-					p= post.body
+					p
+					#post-body
 					span= post.created.toGMTString()
-					p= loginShow
+					#raw-post-body= post.body
+					p
 
 					if (loginShow || session.isLoggedIn)
 
@@ -50,3 +59,6 @@ block content
 							| last modified : #{post.modified.toGMTString()}
 
 	include ../layout/bottom
+
+	script.
+		parsePostBody();

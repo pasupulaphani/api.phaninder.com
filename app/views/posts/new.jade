@@ -10,10 +10,10 @@ block content
 		ul
 			li
 				lable(for="title") Title
-				input#title(name="title", value=title)
+				textarea#title(name="title")= title
 			li
 				lable(for="body") Body
-				textarea#body(name="body")= body
+				textarea#body(name="body", style="height: 200px;")= unescape(body)
 			li
 				input(type="submit", value="save")
 

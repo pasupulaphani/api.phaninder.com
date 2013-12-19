@@ -152,6 +152,14 @@ form .post-search-input {
 	margin-top: -8px;
 }
 
+#raw-post-body {
+	display: none;
+}
+
+textarea {
+	width: 70%;
+}
+
 .focal-point {
 	width: 100%;
 	height: auto;
