@@ -53,7 +53,12 @@ exports.edit = function (req, res, next) {
 			return res.send(403);
 		}
 
-		res.render('posts/new.jade', { post: post});
+		res.render('posts/new.jade',
+			{
+				post: post,
+				edit: {raw: req.param('raw')}
+			}
+		);
 	});
 };
 

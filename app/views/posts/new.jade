@@ -1,20 +1,39 @@
 extends ../layout/top
 
 block content
-	action = post ? "/posts/"+post._id : "/posts"
-	_method = post ? "post" : "put"
-	title = post ? post.title : ''
-	body = post ? post.body : ''
-	form(method="post", action=action)
-		input(type="hidden", name="_method", value=_method)
-		ul
-			li
-				lable(for="title") Title
-				textarea#title(name="title")= title
-			li
-				lable(for="body") Body
-				textarea#body(name="body", style="height: 200px;")= unescape(body)
-			li
-				input(type="submit", value="save")
+
+	if (session.isLoggedIn && !edit.raw)
+		script(src='//tinymce.cachefly.net/4.0/tinymce.min.js')
+		script.
+			tinymce.init({
+				selector: "textarea",
+				plugins: [
+					"advlist autolink lists link image charmap print preview anchor",
+					"searchreplace visualblocks code fullscreen",
+					"insertdatetime media table contextmenu paste"
+				],
+				toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+			});
+
+	.row
+		section(role='main')
+			#post.row
+				.large-8.columns
+					action = post ? "/posts/"+post._id : "/posts"
+					_method = post ? "post" : "put"
+					title = post ? post.title : ''
+					body = post ? post.body : ''
+					form(method="post", action=action)
+						input(type="hidden", name="_method", value=_method)
+						ul
+							li
+								lable(for="title") Title
+								input#title(name="title", type="text", value="#{title}")
+							li
+								lable(for="body") Body
+								textarea#body(name="body", style="height: 300px; width: 100%;")= unescape(body)
+							li
+								input(type="submit", value="save")
 
 	include ../layout/bottom
+

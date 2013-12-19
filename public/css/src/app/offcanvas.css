@@ -49,7 +49,7 @@ header h1 {
 	color: #57626b; 
 }
 
-header h1 a {
+header h1 a, header h1 a:visited {
 	font-size: 0.65em;
 	font-weight: 500;
 	cursor: pointer;

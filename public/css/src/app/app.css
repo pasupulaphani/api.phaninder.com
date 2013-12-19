@@ -2,7 +2,7 @@
 /* Global Reset & Standards ---------------------- */
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-body { background: white; font-family: "Helvetica Neue",Helvetica,Arial,Frutiger,"Frutiger Linotype",Univers,Calibri,"Gill Sans","Gill Sans MT","Myriad Pro",Myriad,"DejaVu Sans Condensed","Liberation Sans","Nimbus Sans L",Tahoma,Geneva,sans-serif;
+body { background: white; font-family: "ratio-1","ratio-2","Helvetica Neue",Helvetica,Arial,Frutiger,"Frutiger Linotype",Univers,Calibri,"Gill Sans","Gill Sans MT","Myriad Pro",Myriad,"DejaVu Sans Condensed","Liberation Sans","Nimbus Sans L",Tahoma,Geneva,sans-serif;
 ; font-style: normal; font-size: 14px; font-weight: normal; text-align: left; color: #4a4235;line-height: 1; position: relative; -webkit-font-smoothing: antialiased; }
 
 /* Links ---------------------- */
@@ -21,7 +21,11 @@ figure figcaption { margin-bottom: 1px; }
 /* Base Type Styles Using Modular Scale ---------------------- */
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td, figcaption { margin: 0; padding: 0; font-size: 14px; direction: ltr; }
 
-p { font-family: inherit; font-weight: normal; font-size: 17px; line-height: 1.6; margin-bottom: 17px; }
+#post-body ul, #post-body ol, #post-body li, #post-body pre { 
+    font-family: inherit; font-weight: normal; font-size: 18px; line-height: 1.6; margin-bottom: 17px; 
+}
+
+p { font-family: inherit; font-weight: normal; font-size: 18px; line-height: 1.6; margin-bottom: 17px; }
 p.lead { font-size: 17.5px; line-height: 1.6; margin-bottom: 17px; }
 
 aside p { font-size: 13px; line-height: 1.35; font-style: italic; }
