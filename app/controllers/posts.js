@@ -33,7 +33,7 @@ exports.show = function (req, res, next) {
 
 // new post : new
 exports.new = function (req, res, next) {
-	res.render("posts/new.jade");
+	res.render("posts/new.jade", {edit: {raw: req.param('raw')}});
 };
 
 // edit a post : edit

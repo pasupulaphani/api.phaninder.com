@@ -35,9 +35,9 @@ block content
 									input(type="hidden", id="status", name="status", value="")
 
 								- var status_info = {	U:"Under construction", Y:"Displayed", T:"Trashed"}
-								a.small.secondary.radius.button.dropdown(href='#', data-dropdown='status')= status_info[post.status]
+								a.small.secondary.radius.button.dropdown(href='#', data-dropdown='statuslist')= status_info[post.status]
 								br
-								ul#status.f-dropdown(data-dropdown-content='data-dropdown-content')
+								ul#statuslist.f-dropdown(data-dropdown-content='data-dropdown-content')
 									- for (var state in status_info) {
 										-	if (post.status != state)
 											li

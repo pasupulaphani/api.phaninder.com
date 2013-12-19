@@ -12,7 +12,10 @@ block content
 					"searchreplace visualblocks code fullscreen",
 					"insertdatetime media table contextmenu paste"
 				],
-				toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+				toolbar: "insertfile undo redo | styleselect | bold italic \
+									| alignleft aligncenter alignright alignjustify \
+									| link image | bullist numlist outdent indent   \
+									| code | visualblocks preview fullscreen"
 			});
 
 	.row
@@ -32,8 +35,9 @@ block content
 							li
 								lable(for="body") Body
 								textarea#body(name="body", style="height: 300px; width: 100%;")= unescape(body)
+							br
 							li
-								input(type="submit", value="save")
+								input.tiny.button(type="submit", value="Save")
 
 	include ../layout/bottom
 
