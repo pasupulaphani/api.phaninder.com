@@ -117,11 +117,11 @@ header h2 {
 	color: #a3a9b8;
 }
 
-form .post-search-input {
-	background: #fff url("/images/search_icon5.png") no-repeat 5px 3px;
+form #post-search-input {
+	background: #fff url("/images/search_icon5.png") no-repeat 5px 5px;
 	font-size: 100%;
-	margin-top: 3px;
-	padding: 5px 25px 5px 30px;
+	margin-top: 4px;
+	padding: 5px 25px 5px 35px;
 	width: 240px;
 	font-weight: 300;
 	color: #6d758f;
@@ -196,7 +196,7 @@ text-align: center;
 
 [role="navigation"]#topMenu ul { margin-top: 0; }
 
-[role="complementary"] { margin-left: -100%; width: 80%; float: left; z-index: 2; }
+[role="complementary"] { margin-left: -100%; width: 80%; float: right; z-index: 2; }
 
 [role="main"] { margin-left: 0; float: right; z-index: 1; position: relative; }
 
@@ -228,7 +228,7 @@ text-align: center;
 
 @media all and (min-width: 768px) { 
 	menu-button, .sidebar-button { display: none; }
-	[role="complementary"] { width: 20%; margin-left: 0; float: left; padding: 0 15px; }
+	[role="complementary"] {margin-left: 0; float: right; padding: 0 15px; }
 	[role="main"] { width: 80%; padding: 0 15px; }
 	[role="findme"] { width: 85%; padding: 0 15px; float: right;}
 	.paneled [role="main"] { width: 100%; padding: 0; background: #f4f4f4; left: 0 !important; }
@@ -244,6 +244,8 @@ text-align: center;
 @media all and (max-width: 768px) {
 	#site-footer .inline-list li { font-size: 17px; width: 30%;}
 	.footer-back-up { font-size: 36px; position: absolute; right: 45px; bottom: 45px;}
+	form #post-search-input {	width: 100%; }
+	#sidebar .sub-nav { margin-left:auto; width:70%; }
 }
 
 @media only screen and (min-width: 40.063em) and (max-width: 64.063em) {
