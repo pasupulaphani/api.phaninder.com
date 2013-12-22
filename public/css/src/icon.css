@@ -38,52 +38,52 @@
   border-radius: 6px; }
 
 .no-svg .webicon.github {
-  background: url("http://local-sites.com/offcanvas/images/webicon-github-m.png"); }
+  background: url("/images/webicon-github-m.png"); }
 
 .no-svg .webicon.github.large {
-  background: url("http://local-sites.com/offcanvas/images/webicon-github.png"); }
+  background: url("/images/webicon-github.png"); }
 
 .no-svg .webicon.github.small {
-  background: url("http://local-sites.com/offcanvas/images/webicon-github-s.png"); }
+  background: url("/images/webicon-github-s.png"); }
 
 .svg .webicon.github {
-  background: url("http://local-sites.com/offcanvas/images/webicon-github.svg"); }
+  background: url("/images/webicon-github.svg"); }
 
 .no-svg .webicon.linkedin {
-  background: url("http://local-sites.com/offcanvas/images/webicon-linkedin-m.png"); }
+  background: url("/images/webicon-linkedin-m.png"); }
 
 .no-svg .webicon.linkedin.large {
-  background: url("http://local-sites.com/offcanvas/images/webicon-linkedin.png"); }
+  background: url("/webicon-linkedin.png"); }
 
 .no-svg .webicon.linkedin.small {
-  background: url("http://local-sites.com/offcanvas/images/webicon-linkedin-s.png"); }
+  background: url("/webicon-linkedin-s.png"); }
 
 .svg .webicon.linkedin {
-  background: url("http://local-sites.com/offcanvas/images/webicon-linkedin.svg"); }
+  background: url("/images/webicon-linkedin.svg"); }
 
 .no-svg .webicon.facebook {
-  background: url("http://local-sites.com/offcanvas/images/webicon-facebook-m.png"); }
+  background: url("/webicon-facebook-m.png"); }
 
 .no-svg .webicon.facebook.large {
-  background: url("http://local-sites.com/offcanvas/images/webicon-facebook.png"); }
+  background: url("/images/webicon-facebook.png"); }
 
 .no-svg .webicon.facebook.small {
-  background: url("http://local-sites.com/offcanvas/images/webicon-facebook-s.png"); }
+  background: url("/images/webicon-facebook-s.png"); }
 
 .svg .webicon.facebook {
-  background: url("http://local-sites.com/offcanvas/images/webicon-facebook.svg"); }
+  background: url("/images/webicon-facebook.svg"); }
 
 .no-svg .webicon.twitter {
-  background: url("http://local-sites.com/offcanvas/images/webicon-twitter-m.png"); }
+  background: url("/images/webicon-twitter-m.png"); }
 
 .no-svg .webicon.twitter.large {
-  background: url("http://local-sites.com/offcanvas/images/webicon-twitter.png"); }
+  background: url("/images/webicon-twitter.png"); }
 
 .no-svg .webicon.twitter.small {
-  background: url("http://local-sites.com/offcanvas/images/webicon-twitter-s.png"); }
+  background: url("/images/webicon-twitter-s.png"); }
 
 .svg .webicon.twitter {
-  background: url("http://local-sites.com/offcanvas/images/webicon-twitter.svg"); }
+  background: url("/images/webicon-twitter.svg"); }
 
 /* 
   custom icons
