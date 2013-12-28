@@ -18,6 +18,8 @@
     $.fn.foundationClearing         ? $doc.foundationClearing() : null;
 
     $('input, textarea').placeholder();
+    // animate after load
+    $('#gavatar').addClass("bounce");
   });
 
   // UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE8 SUPPORT AND ARE USING .block-grids
@@ -39,4 +41,15 @@
     window.scrollY>130 ? ($("#home").addClass("fix")) : ($("#home").removeClass("fix"));
   });
 
+  // animate depending on the scroll position
+  $(window).scroll(function() {
+      $('#findmeicons').each(function(){
+      var imagePos = $(this).offset().top;
+
+      var topOfWindow = $(window).scrollTop();
+        if (imagePos < topOfWindow+800) {
+          $(this).addClass("slideExpandUp");
+        }
+      });
+    });
 })(jQuery, this);

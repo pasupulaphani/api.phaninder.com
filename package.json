@@ -40,6 +40,7 @@
   ],
   "staticCSSDependencies": [
     "public/css/src/foundation.css",
+    "public/css/src/animations.css",
     "public/css/src/font.css",
     "public/css/src/icon.css",
     "public/css/src/app/app.css",
