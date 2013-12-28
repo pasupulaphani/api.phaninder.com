@@ -29,13 +29,20 @@
     "grunt": "~0.4.2",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-jshint": "~0.7.2",
-    "grunt-contrib-uglify": "~0.2.7"
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-cssmin": "~0.7.0"
   },
   "staticJSDependencies": [
-    "public/js/src/vendor/jquery.js",
     "public/js/src/foundation.min.js",
     "public/js/src/app/my.app.js",
     "public/js/src/app/my.offcanvas.js",
     "public/js/src/app/my.placeholder.js"
+  ],
+  "staticCSSDependencies": [
+    "public/css/src/foundation.css",
+    "public/css/src/font.css",
+    "public/css/src/icon.css",
+    "public/css/src/app/app.css",
+    "public/css/src/app/offcanvas.css"
   ]
 }

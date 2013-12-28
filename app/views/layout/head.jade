@@ -19,11 +19,28 @@ meta(property='og:image', content='/favicon.ico')
 meta(property='og:site_name', content='A blog')
 meta(property='fb:admins', content='N/A')
 
-link(rel='stylesheet', href='/css/src/foundation.css')
-link(rel='stylesheet', href='/css/src/font.css')
-link(rel='stylesheet', href='/css/src/icon.css')
-link(rel='stylesheet', href='/css/src/app/app.css')
-link(rel='stylesheet', href='/css/src/app/offcanvas.css')
+if (mode === "dev")
+	//- this is to make static loc "public/js/src/jquery.js" to /js/src/jquery.js
+	- var makeUrl = function(file) {
+	-   return file.replace(/^public/,"");
+	- }
+
+	//- under development we source individual files.
+	//- staticCss is only made available in dev mode.
+	- for (var i = 0; i < staticCss.length; ++i) {
+		link(rel='stylesheet', href=makeUrl(staticCss[i]));
+	- }
+
+else
+	//- created by grunt tasks
+	link(rel='stylesheet', href='/css/main.min.css')
+
+//- jquery js is now sourced at head due to dependency issues
+if (mode === "dev")
+	script(src="/js/src/vendor/jquery.js")
+else
+	//- Note: google hosted version doesn't have sizzle.js
+	script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
 
 //if lt IE 9
 script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')

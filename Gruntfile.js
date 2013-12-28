@@ -4,9 +4,11 @@ module.exports = function(grunt) {
 	// All upfront config goes in a massive nested object.
 	grunt.initConfig({
 		srcFolder: 'public/js/src',
-		distFolder: 'public/js',
-		distFile: 'main.js',
-		minFile: 'main.min.js',
+		distJsFolder: 'public/js',
+		distJsFile: 'main.js',
+		minJsFile: 'main.min.js',
+		distCssFolder: 'public/css',
+		minCssFile: 'main.min.css',
 
 		// Allows us to reference properties we declared in package.json.
 		pkg: grunt.file.readJSON('package.json'),
@@ -15,21 +17,30 @@ module.exports = function(grunt) {
 			options: {
 				separator: ';'
 			},
-			dist: {
+			js: {
 				// should pass src js files as list to avoid dependency issues
 				src: '<%= pkg.staticJSDependencies %>',
-				dest: '<%= distFolder %>/<%= distFile %>'
+				dest: '<%= distJsFolder %>/<%= distJsFile %>'
 			}
 		},
 
 		uglify: {
-			min: {
+			js: {
 				files: [{
-					src: '<%= distFolder %>/<%= distFile %>',
-					dest: '<%= distFolder %>/<%= minFile %>'
+					src: '<%= distJsFolder %>/<%= distJsFile %>',
+					dest: '<%= distJsFolder %>/<%= minJsFile %>'
 				}]
 			}
 		},
+
+		cssmin: {
+		  combine: {
+		    files: {
+		      '<%= distCssFolder %>/<%= minCssFile %>': '<%= pkg.staticCSSDependencies %>'
+		    }
+		  }
+		},
+
 		// Still to configure
 		jshint: {
 			src: ['Gruntfile.js', 'routes/**/*.js'],
@@ -60,8 +71,9 @@ module.exports = function(grunt) {
 	// Now actually load the tasks.
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 
 	// Register our own custom task alias.
-	grunt.registerTask('build', ['concat', 'uglify']);
+	grunt.registerTask('build', ['concat', 'uglify', 'cssmin']);
 };

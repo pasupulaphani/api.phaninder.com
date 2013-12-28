@@ -52,6 +52,7 @@ module.exports = function (app, config) {
 
 		if (config.mode === 'dev') {
 			res.locals.staticJs = config.staticJSDependencies
+			res.locals.staticCss = config.staticCSSDependencies
 		}
 
 		next();
