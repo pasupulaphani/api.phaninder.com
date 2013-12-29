@@ -19,7 +19,9 @@
 
     $('input, textarea').placeholder();
     // animate after load
-    $('#gavatar').addClass("bounce");
+    setTimeout(function(){
+      $('#gavatar').addClass("bounce");
+    }, 500)
   });
 
   // UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE8 SUPPORT AND ARE USING .block-grids
@@ -43,13 +45,29 @@
 
   // animate depending on the scroll position
   $(window).scroll(function() {
-      $('#findmeicons').each(function(){
-      var imagePos = $(this).offset().top;
+    $('#findmeicons').each(function(){
+    var imagePos = $(this).offset().top;
 
-      var topOfWindow = $(window).scrollTop();
-        if (imagePos < topOfWindow+800) {
-          $(this).addClass("slideExpandUp");
-        }
-      });
+    var topOfWindow = $(window).scrollTop();
+      if (imagePos < topOfWindow+800) {
+        $(this).addClass("slideExpandUp");
+      }
     });
+  });
+
+  $('#findmeicons a').hover(function(){
+    $(this).addClass("pulse");
+  }, function(){
+      setTimeout(function(){
+        $(this).removeClass("pulse");
+      }.bind(this), 2000)
+  });
+
+  $('#gavatar').hover(function(){
+    $(this).addClass("tossing");
+  }, function(){
+      $(this).removeClass("tossing");
+      $(this).removeClass("bounce");
+  });
+
 })(jQuery, this);
