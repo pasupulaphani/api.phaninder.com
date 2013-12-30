@@ -37,8 +37,8 @@ header div {
 	margin: 0.5em auto 0.5em;
 }
 
-header #gavatar:hover {
-	cursor: not-allowed;
+header #gavatar a:hover {
+	cursor: default;
 }
 
 header h1 {
@@ -248,6 +248,10 @@ text-align: center;
 	#sidebar .sub-nav { margin-left:auto; width:70%; }
 }
 
+@media all and (min-width: 64.063em) { 
+	header #gavatar {	margin-top: -3px;}
+}
+
 @media only screen and (min-width: 40.063em) and (max-width: 64.063em) {
 /*this is for medium stuff exclusive*/
 }
@@ -263,6 +267,9 @@ text-align: center;
 		position: relative;
 		width: 55px; !important;
 		left: -7px;
+	}
+	header h1 {
+		font-size: 1.80em;
 	}
 }
 
