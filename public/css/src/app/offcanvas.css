@@ -37,14 +37,13 @@ header div {
 	margin: 0.5em auto 0.5em;
 }
 
-header img {
-	margin: -7px 0 0 0;
+header #gavatar:hover {
+	cursor: not-allowed;
 }
 
 header h1 {
 	font-weight: bold;
 	line-height: 1;
-	margin: 0;
 	font-size: 2.10em;
 	color: #57626b; 
 }
@@ -239,6 +238,7 @@ text-align: center;
 	[role="navigation"]#topMenu { display: none; }
 	.focal-point { width: 150%; height: auto; overflow: hidden; position: relative; right: 90px;}
 	code { height: auto; overflow: hidden; position: relative;}
+	header h1 {		margin: 0;	}
 }
 
 @media all and (max-width: 768px) {
@@ -249,19 +249,20 @@ text-align: center;
 }
 
 @media only screen and (min-width: 40.063em) and (max-width: 64.063em) {
-	.header-medium-2 {
-		position: relative;
-		width: 95px;
-		right: -20px;
-	}
-	.header-medium-2 img {
-		margin: -3px 0 0 0;
-	}
+/*this is for medium stuff exclusive*/
 }
 
 @media only screen and (max-width: 40.063em) {
 	header.intro {
 		padding: 0px 0; !important;
+	}
+	header div {
+		margin: 0.5em 0.5em;
+	}
+	header #gavatar {
+		position: relative;
+		width: 55px; !important;
+		left: -7px;
 	}
 }
 
