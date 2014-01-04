@@ -5,7 +5,9 @@ var myEsc    = require('../helpers/escape.js');
 var appUtils = require('../helpers/appUtils.js');
 var logger   = require('../../config/logger');
 
-// todo: clean up controller
+// todo: did refactor controller 
+// but still can make changes by adding autorization to routes
+// as we have app.param defined
 
 // get all posts : index
 exports.all = function (req, res, next) {
@@ -19,11 +21,7 @@ exports.all = function (req, res, next) {
 	});
 };
 
-// show the post : show
-exports.show = function (req, res, next) {
-	go(req, res, next, req.param('id'));
-};
-
+// same as "post.show" but this is left for other controllers to use
 var go = exports.go = function (req, res, next, id) {
 	var queryBuilder = Post.findById(id);
 	queryBuilder.populate('user');
@@ -36,36 +34,53 @@ var go = exports.go = function (req, res, next, id) {
 	});
 };
 
+
+// app.param stuff
+exports.post = function(req, res, next, id) {
+	var queryBuilder = Post.findById(id);
+	queryBuilder.populate('user');
+	queryBuilder.exec(function (err, post) {
+
+		if (err) return next(err);
+		if (!post || (!req.session.user && !appUtils.dispPost(post.status))) return next(); // 404
+
+		req.post = post;
+		next();
+	});
+};
+
+
+// show the post : show
+exports.show = function (req, res, next) {
+	res.render('posts/show.jade', { post: req.post});
+};
+
+
 // new post : new
 exports.new = function (req, res, next) {
-	res.render("posts/new.jade", {edit: {raw: req.param('raw')}});
+	res.render("posts/new.jade", {
+		edit: {raw: req.param('raw')}
+	});
 };
+
 
 // edit a post : edit
 exports.edit = function (req, res, next) {
-	var id = req.param('id');
+	var post = req.post;
 
-	var queryBuilder = Post.findById(id);
-	queryBuilder.populate('user');
+	// valid user
+	if (post.user._id != req.session.user) {
+		return res.send(403);
+	}
 
-	queryBuilder.exec(function (err, post) {
-		if (err) return next(err);
-
-		if (!post) return next(); // 404
-
-		// valid user
-		if (post.user._id != req.session.user) {
-			return res.send(403);
+	res.render('posts/new.jade',
+		{
+			post: post,
+			edit: {raw: req.param('raw')}
 		}
-
-		res.render('posts/new.jade',
-			{
-				post: post,
-				edit: {raw: req.param('raw')}
-			}
-		);
-	});
+	);
 };
+
 
 // insert a post : create
 exports.create = function (req, res, next) {
@@ -86,56 +101,49 @@ exports.create = function (req, res, next) {
 	});
 };
 
+
 // update a post : update
 exports.update = function (req, res, next) {
-	var id = req.param('id');
+	var post = req.post;
 
-	Post.findOne({_id: id}, function (err, post) {
+	// valid user
+	if (post.user._id != req.session.user) {
+		return res.send(403);
+	}
+
+	var query = {_id: post.id, user: req.session.user}
+
+	post.update({
+		title: req.param('title'),
+		body: escape(req.param('body')),
+		modified: Date.now()
+	}, function (err, numAffected) {
 		if (err) return next(err);
-
-		// valid user
-		if (post.user != req.session.user) {
-			return res.send(403);
-		}
-
-		var query = {_id: id, user: req.session.user}
-
-		post.update({
-			title: req.param('title'),
-			body: escape(req.param('body')),
-			modified: Date.now()
-		}, function (err, numAffected) {
-			if (err) return next(err);
-			if (0 === numAffected) return next(err);
-			res.redirect("/posts/"+id);
-		});
+		if (0 === numAffected) return next(err);
+		res.redirect("/posts/"+post.id);
 	});
 };
 
 // set status of a post: see Post model
 exports.setStatus = function (req, res, next) {
-	var id = req.param('id');
+	var post   = req.post;
 	var status = req.param('status');
 
-	if (!appUtils.validStatus(status)) throw new Error('status must be Y, U or T');
+	if (!appUtils.validStatus(status)) throw new Error('status must be P, M, U or T');
 
-	Post.findOne({_id: id}, function (err, post) {
+	// valid user
+	if (post.user._id != req.session.user) {
+		return res.send(403);
+	}
+
+	var query = {_id: post.id, user: req.session.user}
+
+	post.update({
+		status: status
+	}, function (err, numAffected) {
 		if (err) return next(err);
-
-		// valid user
-		if (post.user != req.session.user) {
-			return res.send(403);
-		}
-
-		var query = {_id: id, user: req.session.user}
-
-		post.update({
-			status: status
-		}, function (err, numAffected) {
-			if (err) return next(err);
-			if (0 === numAffected) return next(err);
-			res.redirect("/posts/" + id);
-		});
+		if (0 === numAffected) return next(err);
+		res.redirect("/posts/" + post.id);
 	});
 };
 
@@ -144,6 +152,7 @@ exports.destroy = function (req, res, next) {
 	var id = req.param('id');
 
 	logger.info({req: req}, 'Deleting post: %s', id);
+	//old way of extracting; just leaving it as we don't use this
 	Post.findOne({_id: id}, function (err, post) {
 		if (err) return next(err);
 
