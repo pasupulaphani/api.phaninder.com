@@ -11,11 +11,9 @@ nav.top-bar(data-topbar='data-topbar')
 				li.has-dropdown
 					a(href='javascript: void(0)') Posts
 					ul.dropdown
-						li
-							a(href='/posts?status=T') Trashed
-						li
-							a(href='/posts?status=U') Under construction
-						li
-							a(href='/posts?status=Y') Displayed
+						- for (var state in infoStatus) {
+							li
+								a(href="/posts?status=#{state}")= infoStatus[state]
+						- }
 				li.has-form
 					a.button.expand(href='/posts/new', value='New Post') New Post

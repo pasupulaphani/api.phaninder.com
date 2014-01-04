@@ -18,49 +18,7 @@ block content
 					p
 
 					if (loginShow || session.isLoggedIn)
-
-						// delete should never be used
-						//- form(name="deletePost", action="/posts/#{post._id}", method="post")
-						//- 	input(type="hidden", name="_method", value="delete")
-						//- 	input(type="submit", value="Delete Post")
-						dl#post-admin.sub-nav
-							dd#set-status
-								script.
-									function setPostStatus(state) {
-										document.postStatusForm.status.value = state;
-										document.postStatusForm.submit();
-									}
-
-								form(name="postStatusForm", action="/posts/#{post._id}/status", method="post")
-									input(type="hidden", id="status", name="status", value="")
-
-								- var status_info = {	U:"Under construction", Y:"Displayed", T:"Trashed", M:"Misc"}
-								a.small.secondary.radius.button.dropdown(href='#', data-dropdown='statuslist')= status_info[post.status]
-								br
-								ul#statuslist.f-dropdown(data-dropdown-content='data-dropdown-content')
-									- for (var state in status_info) {
-										-	if (post.status != state)
-											li
-												a(onclick="setPostStatus('#{state}')", href="javascript: void(0)")= status_info[state]
-									- }
-
-							dd#post-edit
-									a.small.secondary.button.split(href="/posts/#{post._id}/edit") Edit Post
-										span(data-dropdown='mode')
-									br
-									ul#mode.f-dropdown(data-dropdown-content='data-dropdown-content')
-										li
-											a(href='/posts/#{post._id}/edit?raw=1') Edit Raw Post
-
-						// This info is to just a fix to show dropdown buttons list
-						// more info : https://github.com/zurb/foundation/issues/3922
-						p
-							b Post Info :
-							br
-							| author: #{post.user._id}
-							br
-							| last modified : #{post.modified.toGMTString()}
-
+						include ./posts_admin
 		include ./search
 	include ../layout/bottom
 

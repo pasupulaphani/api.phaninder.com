@@ -2,7 +2,8 @@ var express    = require('express');
 var MongoStore = require('connect-mongo')(express);
 var path       = require('path');
 var logger     = require('../config/logger');
-
+var loggedIn   = require('./middleware/loggedIn');
+var appUtils   = require('../app/helpers/appUtils');
 
 module.exports = function (app, config) {
 
@@ -50,6 +51,7 @@ module.exports = function (app, config) {
 			mode    : config.mode
 		};
 
+		if (loggedIn) {res.locals.infoStatus = appUtils.infoStatus }
 		if (config.mode === 'dev') {
 			res.locals.staticJs = config.staticJSDependencies
 			res.locals.staticCss = config.staticCSSDependencies
