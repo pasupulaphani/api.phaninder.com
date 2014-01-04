@@ -34,7 +34,7 @@ block content
 								form(name="postStatusForm", action="/posts/#{post._id}/status", method="post")
 									input(type="hidden", id="status", name="status", value="")
 
-								- var status_info = {	U:"Under construction", Y:"Displayed", T:"Trashed"}
+								- var status_info = {	U:"Under construction", Y:"Displayed", T:"Trashed", M:"Misc"}
 								a.small.secondary.radius.button.dropdown(href='#', data-dropdown='statuslist')= status_info[post.status]
 								br
 								ul#statuslist.f-dropdown(data-dropdown-content='data-dropdown-content')

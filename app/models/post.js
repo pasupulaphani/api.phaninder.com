@@ -1,10 +1,6 @@
-
 var mongoose = require('mongoose');
+var appUtil = require('../helpers/appUtils.js');
 
-// status:
-//		T (trash),
-//		Y (ok to show),
-//		U (Under construction)
 var PostSchema = mongoose.Schema({
 	_id : {type: String, trim: true, lowercase: true},
 	title : {type: String, trim: true, unique: true},
@@ -12,7 +8,7 @@ var PostSchema = mongoose.Schema({
 	created : {type: Date, default: Date.now},
 	modified : {type: Date, default: Date.now},
 	user : {type: String, ref: 'User'},
-	status : {type: String, default: 'Y'}
+	status : {type: String, default: 'Y', validate: appUtil.validStatus }
 });
 
 mongoose.model('Post', PostSchema);

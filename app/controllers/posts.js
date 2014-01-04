@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 
 var myEsc    = require('../helpers/escape.js');
+var appUtil  = require('../helpers/appUtils.js');
 var logger   = require('../../config/logger');
 
 // get all posts : index
@@ -112,7 +113,7 @@ exports.setStatus = function (req, res, next) {
 	var id = req.param('id');
 	var status = req.param('status');
 
-	if (["Y", "U", "T"].indexOf(status) == -1) throw new Error('status must be Y, U or T');
+	if (!appUtil.validStatus(status)) throw new Error('status must be Y, U or T');
 
 	Post.findOne({_id: id}, function (err, post) {
 		if (err) return next(err);

@@ -1,4 +1,3 @@
-
 var getDBURL = exports.getDBURL = function (config) {
 	var url = "";
 

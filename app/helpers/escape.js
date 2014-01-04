@@ -1,4 +1,3 @@
-
 var urlSeoEsc = exports.urlSeoEsc = function (str) {
 	str = str.
 		replace(/[^a-zA-Z0-9-_\s]/g,''). //replace except alphabits, numbers, spaces, _, -

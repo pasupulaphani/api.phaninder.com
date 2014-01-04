@@ -1,9 +1,8 @@
-
 var mongoose = require('mongoose');
-var validEmail = require('../helpers/validate/email');
+var appUtil = require('../helpers/appUtils.js');
 
 var Userschema = mongoose.Schema({
-	_id: {type: String, lowercase: true, trim: true, validate: validEmail},
+	_id: {type: String, lowercase: true, trim: true, validate: appUtil.validEmail},
 	name: {first: String, last: String},
 	salt: {type: String, required: true},
 	hash: {type: String, required: true},
