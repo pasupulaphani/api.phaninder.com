@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 
+var posts = require('./posts');
 
 exports.home = function(req, res, next) {
 	// for the time being
@@ -8,15 +9,5 @@ exports.home = function(req, res, next) {
 };
 
 exports.about = function(req, res, next) {
-	var id = 'about'
-
-	var queryBuilder = Post.findById(id);
-	queryBuilder.populate('user');
-	queryBuilder.exec(function (err, post) {
-		if (err) return next(err);
-
-		if (!post || (!req.session.user && post.status != 'Y')) return next(); // 404
-
-		res.render('posts/show.jade', { post: post});
-	});
+	posts.go(req, res, next, 'about')
 };

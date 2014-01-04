@@ -14,4 +14,6 @@ module.exports = function (app) {
 	app.post('/posts/:id/status', loggedIn, posts.setStatus);
 
 	app.delete('/posts/:id', loggedIn, posts.destroy);
+
+	// Todo : looki into seting up parm to ease up stuff in controller
 }

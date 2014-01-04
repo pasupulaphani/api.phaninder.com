@@ -3,11 +3,19 @@ var validEmail = exports.validEmail = function (email) {
  	return validator.validate(email);
 }
 
-var infoStatus =  exports.infoStatus = {	
+var infoStatus = exports.infoStatus = {	
 	U:"Under construction",
-	Y:"Displayed",
+	P:"Published",
 	T:"Trashed",
-	M:"Misc"};
+	M:"MiscPublished"};
+
+// can view with no login (published)
+var dispPost = exports.dispPost = function (status) {
+	if (['P', 'M'].indexOf(status) >= 0) {
+		return true;
+	}
+	return false
+}
 
 var validStatus = exports.validStatus = function (status) {
 	return (status in infoStatus)

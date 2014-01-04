@@ -2,14 +2,16 @@ var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 
 var myEsc    = require('../helpers/escape.js');
-var appUtil  = require('../helpers/appUtils.js');
+var appUtils = require('../helpers/appUtils.js');
 var logger   = require('../../config/logger');
+
+// todo: clean up controller
 
 // get all posts : index
 exports.all = function (req, res, next) {
-	var status = req.param('status') ? req.param('status') : 'Y'
+	var status = req.param('status') ? req.param('status') : 'P'
 
-	if (!req.session.user && status != 'Y') return next(); // 404
+	if (!req.session.user && !appUtils.dispPost(status)) return next(); // 404
 
 	Post.find({'status':status}).sort('created').exec(function (err, posts) {
 		if (err) throw next(err);
@@ -19,14 +21,16 @@ exports.all = function (req, res, next) {
 
 // show the post : show
 exports.show = function (req, res, next) {
-	var id = req.param('id');
+	go(req, res, next, req.param('id'));
+};
 
+var go = exports.go = function (req, res, next, id) {
 	var queryBuilder = Post.findById(id);
 	queryBuilder.populate('user');
 	queryBuilder.exec(function (err, post) {
 		if (err) return next(err);
 
-		if (!post || (!req.session.user && post.status != 'Y')) return next(); // 404
+		if (!post || (!req.session.user && !appUtils.dispPost(post.status))) return next(); // 404
 
 		res.render('posts/show.jade', { post: post});
 	});
@@ -113,7 +117,7 @@ exports.setStatus = function (req, res, next) {
 	var id = req.param('id');
 	var status = req.param('status');
 
-	if (!appUtil.validStatus(status)) throw new Error('status must be Y, U or T');
+	if (!appUtils.validStatus(status)) throw new Error('status must be Y, U or T');
 
 	Post.findOne({_id: id}, function (err, post) {
 		if (err) return next(err);
