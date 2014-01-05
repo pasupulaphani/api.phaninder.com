@@ -48,7 +48,10 @@ module.exports = function (app, config) {
 		res.locals = {
 			session : req.session,
 			site    : config.site,
-			mode    : config.mode
+			mode    : config.mode,
+			url     : {
+				host: req.host,
+				path: req.path}
 		};
 
 		if (loggedIn) {res.locals.infoStatus = appUtils.infoStatus }

@@ -11,6 +11,7 @@ var logger   = require('../../config/logger');
 
 // get all posts : index
 exports.all = function (req, res, next) {
+	console.log(req.route.path);
 	var status = req.param('status') ? req.param('status') : 'P'
 
 	if (!req.session.user && !appUtils.dispPost(status)) return next(); // 404

@@ -1,5 +1,7 @@
 /* 
   social media icons
+  https://github.com/adamfairhead/webicons
+  only required stuff is taken to add more grab more
  */
 
 .webicon {
@@ -85,8 +87,21 @@
 .svg .webicon.twitter {
   background: url("/images/webicon-twitter.svg"); }
 
+.no-svg .webicon.googleplus {
+  background: url("/images/webicon-googleplus-m.png"); }
+
+.no-svg .webicon.googleplus.large {
+  background: url("/images/webicon-googleplus.png"); }
+
+.no-svg .webicon.googleplus.small {
+  background: url("/images/webicon-googleplus-s.png"); }
+
+.svg .webicon.googleplus {
+  background: url("/images/webicon-googleplus.svg"); }
+
 /* 
   custom icons
+  Below is foundation icon css
  */
 
 @font-face {
