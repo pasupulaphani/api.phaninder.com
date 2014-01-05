@@ -11,3 +11,7 @@ exports.home = function(req, res, next) {
 exports.about = function(req, res, next) {
 	posts.go(req, res, next, 'about')
 };
+
+exports.contact = function(req, res, next) {
+	posts.go(req, res, next, 'contact')
+};

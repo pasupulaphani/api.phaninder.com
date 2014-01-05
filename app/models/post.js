@@ -8,7 +8,7 @@ var PostSchema = mongoose.Schema({
 	created : {type: Date, default: Date.now},
 	modified : {type: Date, default: Date.now},
 	user : {type: String, ref: 'User'},
-	status : {type: String, default: 'Y', validate: appUtil.validStatus }
+	status : {type: String, default: 'P', validate: appUtil.validStatus }
 });
 
 mongoose.model('Post', PostSchema);

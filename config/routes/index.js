@@ -8,6 +8,7 @@ module.exports = function(app) {
 
 	app.get('/', index.home);
 	app.get('/about', index.about);
+	app.get('/contact', index.contact);
 
 	// other routes
 	r_login(app);  //handle login, signup and logout
