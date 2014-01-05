@@ -30,11 +30,11 @@ else if (url.path.match(/\/posts*/) && post)
 						li
 							.g-plus(data-action='share', data-annotation='none', data-href='http://phaninder.com')
 						li(style= "margin-top: -2px;")
-							.fb-share-button(data-href="http://#{url.host}.com#{url.path}", data-type="button")
+							.fb-share-button(data-href="http://#{url.host}#{url.path}", data-type="button")
 						li
 							.g-plusone(data-annotation='none', data-size='medium', data-width='300', data-href='http://phaninder.com')
 						li
-							.fb-like(data-href="http://#{url.host}.com#{url.path}", data-width="40px", data-layout='standard', data-action='like', data-show-faces='true', data-share='false')
+							.fb-like(data-href="http://#{url.host}#{url.path}", data-width="40px", data-layout='standard', data-action='like', data-show-faces='true', data-share='false')
 
 						script.
 							//- twitter share
