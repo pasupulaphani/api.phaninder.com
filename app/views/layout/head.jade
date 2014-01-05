@@ -1,23 +1,49 @@
-
 meta(charset='utf-8')
 meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-meta(name='viewport', content='width=device-width,initial-scale=1')
+meta(http-equiv='Content-type', content='text/html;charset=UTF-8')
+meta(http-equiv='cleartype', content='on')
+meta(http-equiv='x-dns-prefetch-control', content='off')
+
+- var sm_desc = "Hi there! I'm Phani. I live in London. I am a full stack developer who specializes in creating dynamic and beautiful web apps. I have been developing web, desktop, mobile applications since I was 17. I currently spend more time in developing new automation techniques for automating project life cycles of my mobile apps."
+- var sm_image = "http://www.gravatar.com/avatar/da8ad3d7a783fda9082894427e6be2a9.png"
 
 title= site.name
-meta(http-equiv='Content-type', content='text/html;charset=UTF-8')
-meta(name="keywords", content="node.js, express, mongoose, mongodb, angularjs")
-meta(name="description", content="This a blog written using MongoDB, ExpressJS, AngularJS, NodeJS")
-
+link(type='text/plain', rel='author', href='/humans.txt')
 link(href='/favicon.ico', rel='shortcut icon', type='image/x-icon')
 
-meta(property='fb:app_id', content='APP_ID')
-meta(property='og:title', content='#{appName} - #{title}')
-meta(property='og:description', content="This a blog written using MongoDB, ExpressJS, AngularJS, NodeJS")
+meta(name='viewport', content='width=device-width,initial-scale=1')
+meta(name="keywords", content="phaninder, pasupulaphani, phani, node.js, express, mongoose, mongodb, angularjs")
+meta(name="description", content="#{sm_desc}")
+meta(name="author", content="Phaninder Pasupula")
+meta(name='copyright', content='© Copyright 2012 to Present')
+meta(name='HandheldFriendly', content='True')
+meta(name='MobileOptimized', content='320')
+meta(name='apple-mobile-web-app-capable', content='yes')
+meta(name='apple-mobile-web-app-status-bar-style', content='black')
+
+//- FB api and open graph
+meta(property='fb:app_id', content='515239655250335')
+meta(property='og:title', content='phaninder.com - Just an another blog')
+meta(property='og:description', content="#{sm_desc}")
 meta(property='og:type', content='website')
-meta(property='og:url', content='phaninder.com')
-meta(property='og:image', content='/favicon.ico')
-meta(property='og:site_name', content='A blog')
-meta(property='fb:admins', content='N/A')
+meta(property='og:url', content='http://www.phaninder.com')
+meta(property='og:image', content="#{sm_image}")
+meta(property='og:site_name', content='phaninder.com')
+
+//- twitter card
+meta(property="twitter:account_id", content="205844733")
+meta(name='twitter:card', content='summary')
+meta(name='twitter:site', content='@pasupulaphani')
+meta(name='twitter:title', content='phaninder.com')
+meta(name='twitter:description', content="#{sm_desc}")
+meta(name='twitter:creator', content='@pasupulaphani')
+meta(name='twitter:image:src', content="#{sm_image}")
+meta(name='twitter:domain', content='phaninder.com')
+
+//- g+ card
+meta(itemprop="name", content="phaninder.com")
+meta(itemprop="description" content="#{sm_desc}")
+meta(itemprop="image" content="#{sm_image}")
 
 if (mode === "dev")
 	//- this is to make static loc "public/js/src/jquery.js" to /js/src/jquery.js
