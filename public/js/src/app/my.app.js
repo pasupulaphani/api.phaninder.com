@@ -55,7 +55,7 @@
     });
   });
 
-  $('#findmeicons a').hover(function(){
+  $('#findmeicons li').hover(function(){
     $(this).addClass("pulse");
   }, function(){
       setTimeout(function(){
