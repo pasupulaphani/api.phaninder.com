@@ -1,0 +1,32 @@
+{
+	"site": {
+		"name": "phaninder.com",
+		"author": "Phaninder",
+		"email": "pasupulaphani@gmail.com"
+	},
+	"mode":"dev",
+	"db": "MongoDB",
+	"session_store": "MongoStore",
+	"MongoDB": {
+		"db": "myblog",
+		"host": "localhost",
+		"port": "27017",
+		"username": "",
+		"password": ""
+	},
+	"MongoStore": {
+		"db": "myblog",
+		"host": "localhost",
+		"port": "27017",
+		"username": "",
+		"password": "",
+		"collection": "mysessions",
+		"clear_interval": 3600
+	},
+	"secret": "this is your session secret",
+	"logSettings": {
+		"stdoutLevel": "error",
+		"logFile": "/home/phani/myblog.log",
+		"logFileLevel": "debug"
+	}
+}

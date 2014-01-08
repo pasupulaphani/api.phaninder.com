@@ -13,3 +13,7 @@ results
 
 npm-debug.log
 node_modules
+
+# configs
+config/env/*_stage.json
+config/env/*_prod.json
