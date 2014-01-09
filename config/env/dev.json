@@ -26,7 +26,7 @@
 	"secret": "this is your session secret",
 	"logSettings": {
 		"stdoutLevel": "error",
-		"logFile": "/home/phani/myblog.log",
+		"logFile": "./log/myblog-dev.log",
 		"logFileLevel": "debug"
 	}
 }

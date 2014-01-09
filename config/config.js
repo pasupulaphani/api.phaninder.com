@@ -9,10 +9,10 @@ function mergeObjs(target) {
 }
 
 function getEnv() {
-	var env = require('/etc/phaninder.com/env.json');
 	var node_env = process.env.NODE_ENV || 'dev';
 	console.log("Loading app in :" + node_env + " mode");
-	return env[node_env];
+	var env = require('./env/' + node_env + '.json');
+	return env;
 }
 
 function getPJson() {
