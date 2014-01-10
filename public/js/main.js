@@ -28,6 +28,10 @@ e.scale!==1)return;var t=l.data("swipe-transition");typeof t=="undefined"&&(t={}
     $.fn.foundationClearing         ? $doc.foundationClearing() : null;
 
     $('input, textarea').placeholder();
+    // animate after load
+    setTimeout(function(){
+      $('#gavatar').addClass("bounce");
+    }, 500)
   });
 
   // UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE8 SUPPORT AND ARE USING .block-grids
@@ -47,6 +51,33 @@ e.scale!==1)return;var t=l.data("swipe-transition");typeof t=="undefined"&&(t={}
 
   $(window).scroll(function(e){
     window.scrollY>130 ? ($("#home").addClass("fix")) : ($("#home").removeClass("fix"));
+  });
+
+  // animate depending on the scroll position
+  $(window).scroll(function() {
+    $('#findmeicons').each(function(){
+    var imagePos = $(this).offset().top;
+
+    var topOfWindow = $(window).scrollTop();
+      if (imagePos < topOfWindow+1000) {
+        $(this).addClass("slideExpandUp");
+      }
+    });
+  });
+
+  $('#findmeicons li').hover(function(){
+    $(this).addClass("pulse");
+  }, function(){
+      setTimeout(function(){
+        $(this).removeClass("pulse");
+      }.bind(this), 2000)
+  });
+
+  $('#gavatar').hover(function(){
+    $(this).addClass("tossing");
+  }, function(){
+      $(this).removeClass("tossing");
+      $(this).removeClass("bounce");
   });
 
 })(jQuery, this);;;(function (window, document, $) {

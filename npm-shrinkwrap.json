@@ -442,6 +442,11 @@
           "resolved": "https://registry.npmjs.org/dtrace-provider/-/dtrace-provider-0.2.8.tgz"
         }
       }
+    },
+    "node-logentries": {
+      "version": "0.1.2",
+      "from": "node-logentries@",
+      "resolved": "https://registry.npmjs.org/node-logentries/-/node-logentries-0.1.2.tgz"
     }
   }
 }

@@ -17,7 +17,8 @@ mongoose.connect(configUtil.getDBURL(config), function(err) {
 	middleware(app, config);
 	routes(app);
 
-	app.listen(process.env.port, function() {
-		console.log('listening on port ' + process.env.port);
+	port = process.env.VCAP_APP_PORT || process.env.port || 3000;
+	app.listen(port, function() {
+		console.log('listening on port ' + port);
 	});
 });

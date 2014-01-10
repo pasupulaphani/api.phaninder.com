@@ -4,7 +4,6 @@
 		"author": "Phaninder",
 		"email": "pasupulaphani@gmail.com"
 	},
-	"mode":"dev",
 	"db": "MongoDB",
 	"session_store": "MongoStore",
 	"MongoDB": {

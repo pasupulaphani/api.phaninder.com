@@ -15,10 +15,10 @@ module.exports = function (app, config) {
 	app.set('views', app.locals.home_dir + '/app/views');
 	app.set('view engine', 'jade');
 
-	// basic express logger. Useful for dubugging locally on stdout
-	if (config.mode === 'dev') {
-		app.use(express.logger(config.mode));
-	}
+	// basic express logger. Writes to stdout
+	app.use(
+		express.logger(process.env.NODE_ENV === 'dev' ? 'dev' : '')
+	);
 
 	// maintain session stuff
 	app.use(express.cookieParser());
@@ -48,14 +48,14 @@ module.exports = function (app, config) {
 		res.locals = {
 			session : req.session,
 			site    : config.site,
-			mode    : config.mode,
+			mode    : process.env.NODE_ENV,
 			url     : {
 				host: req.host,
 				path: req.path}
 		};
 
 		if (loggedIn) {res.locals.infoStatus = appUtils.infoStatus }
-		if (config.mode === 'dev') {
+		if (process.env.NODE_ENV === 'dev') {
 			res.locals.staticJs = config.staticJSDependencies
 			res.locals.staticCss = config.staticCSSDependencies
 		}
