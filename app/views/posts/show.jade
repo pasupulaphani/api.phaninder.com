@@ -3,8 +3,10 @@ extends ../layout/top
 block content
 	script.
 		function parsePostBody() {
-			html = parse_html($("#raw-post-body").html());
-			$("#post-body").append(html);
+			$("#raw-post-body").children("script").remove();
+			post_body = $("#raw-post-body").text();
+			post_html = $.parseHTML( post_body )
+			$("#post-body").append( post_html );
 		}
 	.row
 		section(role='main')

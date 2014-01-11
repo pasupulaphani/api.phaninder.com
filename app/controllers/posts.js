@@ -85,7 +85,7 @@ exports.edit = function (req, res, next) {
 // insert a post : create
 exports.create = function (req, res, next) {
 	var title = req.param('title');
-	var body = escape(req.param('body'));
+	var body = req.param('body');
 	var user = req.session.user;
 
 	if (!title) throw new Error('title is must');
@@ -115,7 +115,7 @@ exports.update = function (req, res, next) {
 
 	post.update({
 		title: req.param('title'),
-		body: escape(req.param('body')),
+		body: req.param('body'),
 		modified: Date.now()
 	}, function (err, numAffected) {
 		if (err) return next(err);
