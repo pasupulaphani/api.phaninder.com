@@ -21,7 +21,7 @@ figure figcaption { margin-bottom: 1px; }
 /* Base Type Styles Using Modular Scale ---------------------- */
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td, figcaption { margin: 0; padding: 0; font-size: 14px; direction: ltr; }
 
-#post-body ul, #post-body ol, #post-body li, #post-body pre { 
+.posts, #post-body ul, #post-body ol, #post-body li, #post-body pre { 
     font-family: inherit; font-weight: normal; font-size: 20px; margin-bottom: 17px; padding-left: 24px;
 }
 

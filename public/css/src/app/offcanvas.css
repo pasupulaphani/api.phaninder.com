@@ -138,6 +138,41 @@ form #post-search-input {
 	box-shadow: 0 1px 0 rgba(255,255,255,0.75),inset 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.posts h2 {
+	font-size: 24px;
+}
+
+.posts h2 a {
+	color: #696175;
+	background: #fff;
+	position: relative;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	display: inline-block;
+	text-decoration: none!important;
+}
+
+.posts ul {
+    margin: 0.75em 0;
+    padding: 0 1em;
+    list-style: none;
+}
+
+.posts li:before { 
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 0.9em;
+    position: relative;
+}
+
 #post h1, #findme h1 {
 	color: #2c251d;
 	font-size: 2.2em;
@@ -246,6 +281,7 @@ text-align: center;
 	.footer-back-up { font-size: 36px; position: absolute; right: 45px; bottom: 45px;}
 	form #post-search-input {	width: 100%; }
 	#sidebar .sub-nav { margin-left:auto; width:70%; }
+	.posts h2 {	font-size: 17px; }
 }
 
 @media all and (min-width: 64.063em) { 
