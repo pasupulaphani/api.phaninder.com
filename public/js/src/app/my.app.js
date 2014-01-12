@@ -45,23 +45,38 @@
 
   // animate depending on the scroll position
   $(window).scroll(function() {
-    $('#findmeicons').each(function(){
-    var imagePos = $(this).offset().top;
+    $('#shareposticons').each(function(){
+      var imagePos = $(this).offset().top;
 
-    var topOfWindow = $(window).scrollTop();
+      var topOfWindow = $(window).scrollTop();
       if (imagePos < topOfWindow+1000) {
         $(this).addClass("slideExpandUp");
       }
     });
+    $('#findmeicons').each(function(){
+      var imagePos = $(this).offset().top;
+
+      var topOfWindow = $(window).scrollTop();
+      if (imagePos < topOfWindow+1000) {
+        $(this).addClass("hatch");
+      }
+    });
   });
 
-  $('#findmeicons li').hover(function(){
+  $('#shareposticons li').hover(function(){
     $(this).addClass("pulse");
   }, function(){
       setTimeout(function(){
         $(this).removeClass("pulse");
       }.bind(this), 2000)
   });
+
+  $('#findmeicons .anime').hover(function(){
+    $(this).addClass("floating");
+  }, function(){
+    $(this).removeClass("floating");
+  });
+
 
   $('#gavatar').hover(function(){
     $(this).addClass("tossing");

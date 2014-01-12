@@ -1,3 +1,58 @@
+/* Twitter Bird and buttons*/
+.twitter-buttons-bottom {
+	padding-top: 11px;
+}
+
+.follow-button {
+	background-image: url(/images/twitter-bird-sprite-small.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	cursor: pointer;
+	display: block;
+	padding: 3px 0 7px 40px;
+	right: -168px;
+	top: 5px;
+	-webkit-transition: right 0.3s;
+	-moz-transition: right 0.3s;
+	transition: right 0.3s;
+	width: 168px;
+	height: 29px;
+}
+
+.follow-button:hover {-webkit-animation: fly 0.2s steps(4) 0 10;
+	-moz-animation: fly 0.2s steps(4) 0 10;
+	animation: fly 0.2s steps(4) 0 10;
+	right: 0;
+}
+
+@-webkit-keyframes fly {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -140px;
+  }
+}
+
+@-moz-keyframes fly {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -140px;
+  }
+}
+
+@keyframes fly {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -140px;
+  }
+}
+
+
 /*
 ==============================================
 CSS3 ANIMATION CHEAT SHEET
