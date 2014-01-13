@@ -309,6 +309,9 @@ text-align: center;
 	}
 }
 
+p code, div code {
+	margin-top: -25px;
+}
 .gist{
   margin: 15px 0 !important;
 }
