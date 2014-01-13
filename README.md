@@ -7,7 +7,7 @@ NodeJs app
  * mongodb
 
 
-Required /etc/env.config format.
+Config:  config/env/env.json format.
 
     {
     	"development": {
@@ -35,8 +35,5 @@ Required /etc/env.config format.
     			"logFile": "/home/phani/myblog.log",
     			"logFileLevel": "debug"
     		}
-    	},
-    	"production": {
-            "same goes here": "fill with production settings"
     	}
     }
