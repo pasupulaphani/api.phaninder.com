@@ -8,6 +8,8 @@ var appUtils   = require('../app/helpers/appUtils');
 module.exports = function (app, config) {
 
 	var static_dir = path.join(app.locals.home_dir + '/public');
+
+	app.use(express.compress());
 	app.use(express.static(static_dir));
 	app.use(express.favicon(static_dir + '/favicon.ico'));
 
