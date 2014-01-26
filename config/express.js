@@ -53,16 +53,21 @@ module.exports = function (app, config) {
 			mode    : process.env.NODE_ENV,
 			url     : {
 				host: req.host,
-				path: req.path}
+				path: req.path},
+			staticHost : config.staticHost
 		};
 
 		if (loggedIn) {res.locals.infoStatus = appUtils.infoStatus }
+
+		// blocking operation but only for dev
 		if (process.env.NODE_ENV === 'dev') {
-			res.locals.staticJs = config.staticJSDependencies
-			res.locals.staticCss = config.staticCSSDependencies
+			var url = config.staticHost+'/static_dev_dependencies.json';
+			appUtils.setStaticDependencies(res, url, next)
+		} else {
+			next();
 		}
 
-		next();
+		//next();
 	})
 
 

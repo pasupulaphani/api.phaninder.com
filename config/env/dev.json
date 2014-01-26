@@ -27,5 +27,6 @@
 		"stdoutLevel": "error",
 		"logFile": "./log/myblog-dev.log",
 		"logFileLevel": "debug"
-	}
+	},
+	"staticHost": "http://localsites.com/static.phaninder.com/public"
 }

@@ -3,43 +3,6 @@ module.exports = function(grunt) {
 
 	// All upfront config goes in a massive nested object.
 	grunt.initConfig({
-		srcFolder: 'public/js/src',
-		distJsFolder: 'public/js',
-		distJsFile: 'main.js',
-		minJsFile: 'main.min.js',
-		distCssFolder: 'public/css',
-		minCssFile: 'main.min.css',
-
-		// Allows us to reference properties we declared in package.json.
-		pkg: grunt.file.readJSON('package.json'),
-
-		concat: {
-			options: {
-				separator: ';'
-			},
-			js: {
-				// should pass src js files as list to avoid dependency issues
-				src: '<%= pkg.staticJSDependencies %>',
-				dest: '<%= distJsFolder %>/<%= distJsFile %>'
-			}
-		},
-
-		uglify: {
-			js: {
-				files: [{
-					src: '<%= distJsFolder %>/<%= distJsFile %>',
-					dest: '<%= distJsFolder %>/<%= minJsFile %>'
-				}]
-			}
-		},
-
-		cssmin: {
-		  combine: {
-		    files: {
-		      '<%= distCssFolder %>/<%= minCssFile %>': '<%= pkg.staticCSSDependencies %>'
-		    }
-		  }
-		},
 
 		// Still to configure
 		jshint: {

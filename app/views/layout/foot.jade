@@ -7,12 +7,12 @@ if (mode === "dev")
 	//- under development we source individual files.
 	//- staticJs is only made available in dev mode.
 	- for (var i = 0; i < staticJs.length; ++i) {
-		script(src=makeUrl(staticJs[i]));
+		script(src=staticHost+makeUrl(staticJs[i]));
 	- }
 
 else
 	//- created by grunt tasks
-	script(src='/js/main.min.js')
+	script(src=staticHost+'/js/main.min.js')
 
 //- http://blairvanderhoof.com/gist-embed/
 script(type='text/javascript', src='//cdnjs.cloudflare.com/ajax/libs/gist-embed/1.3/gist-embed.min.js')
