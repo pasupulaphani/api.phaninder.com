@@ -16,7 +16,7 @@ block content
 					p
 					#post-body
 					span= post.created.toGMTString()
-					#raw-post-body= post.body
+					#raw-post-body(style = 'display: none')= post.body
 					p
 
 					if (loginShow || session.isLoggedIn)
