@@ -17,3 +17,4 @@ node_modules
 # configs
 config/env/*stage.json
 config/env/*prod.json
+config/env/*
