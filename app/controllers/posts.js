@@ -10,12 +10,13 @@ var logger   = require('../../config/logger');
 // as we have app.param defined
 
 // get all posts : index
+// Todo : retrive only required files instaea of all
 exports.all = function (req, res, next) {
 	var status = req.param('status') ? req.param('status') : 'P'
 
 	if (!req.session.user && !appUtils.dispPost(status)) return next(); // 404
 
-	Post.find({'status':status}).sort('created').exec(function (err, posts) {
+	Post.find({'status':status}).sort({'created': -1}).exec(function (err, posts) {
 		if (err) throw next(err);
 		res.render('home.jade', {posts: posts});
 	});
