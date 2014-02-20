@@ -7,18 +7,20 @@
 exports.config = {
   /**
    * Array of application names.
+   this will be overriden by NEW_RELIC_APP_NAME env var
    */
   app_name : ['phaninder.com'],
   /**
    * Your New Relic license key.
+   this will be overriden by NEW_RELIC_LICENSE_KEY env var 
    */
-  license_key : 'your license key',
+  license_key : '0d642861677d37602',
   logging : {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
      * issues with the agent, 'info' and higher will impose the least overhead on
      * production applications.
      */
-    level : 'trace'
+    level : 'info'
   }
 };
