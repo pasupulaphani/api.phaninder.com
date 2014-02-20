@@ -18,3 +18,5 @@ node_modules
 config/env/*stage.json
 config/env/*prod.json
 config/env/*
+
+cap-deploy/*
