@@ -1,6 +1,8 @@
 var mongoose   = require('mongoose');
 var express    = require('express');
-(process.env.NODE_ENV === 'prod') ? require('newrelic') : ''
+if (['prod', 'second'].indexOf(process.env.NODE_ENV) >= 0) {
+	require('newrelic')
+}
 
 var config     = require('./config/config');
 var configUtil = require('./app/helpers/configUtil.js');
