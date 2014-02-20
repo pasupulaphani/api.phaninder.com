@@ -12,7 +12,7 @@ function getEnv() {
 	var node_env = process.env.NODE_ENV || 'dev';
 	var conf_dir = process.env.CONF_DIR || './env/';
 	console.log("Loading app in :" + node_env + " mode");
-	var env = require(conf_dir + node_env + '.json');
+	var env = require(conf_dir + '/' + node_env + '.json');
 	return env;
 }
 
