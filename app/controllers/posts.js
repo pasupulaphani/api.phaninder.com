@@ -53,6 +53,7 @@ exports.post = function(req, res, next, id) {
 
 // show the post : show
 exports.show = function (req, res, next) {
+	if (!req.post) return next(); // 404
 	res.render('posts/show.jade', { post: req.post});
 };
 
@@ -67,6 +68,7 @@ exports.new = function (req, res, next) {
 
 // edit a post : edit
 exports.edit = function (req, res, next) {
+	if (!req.post) return next(); // 404
 	var post = req.post;
 
 	// valid user
@@ -105,6 +107,7 @@ exports.create = function (req, res, next) {
 
 // update a post : update
 exports.update = function (req, res, next) {
+	if (!req.post) return next(); // 404
 	var post = req.post;
 
 	// valid user
@@ -127,6 +130,7 @@ exports.update = function (req, res, next) {
 
 // set status of a post: see Post model
 exports.setStatus = function (req, res, next) {
+	if (!req.post) return next(); // 404
 	var post   = req.post;
 	var status = req.param('status');
 

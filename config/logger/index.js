@@ -13,7 +13,7 @@ var logEntries = function() {
     debug: function() {log.debug(getLastItem(arguments))},
     info : function() {log.info(getLastItem(arguments))},
     warn : function() {log.warning(getLastItem(arguments))},
-    error: function() {log.error(getLastItem(arguments))}
+    error: function() {log.err(getLastItem(arguments))}
   }
   return new LogEntry();
 }
