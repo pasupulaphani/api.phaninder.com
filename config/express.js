@@ -10,6 +10,7 @@ module.exports = function (app, config) {
 	var static_dir = path.join(app.locals.home_dir + '/public');
 
 	app.use(express.compress());
+	// static should be above cookie parser to not set cookie for static files
 	app.use(express.static(static_dir));
 	app.use(express.favicon(static_dir + '/favicon.ico'));
 
