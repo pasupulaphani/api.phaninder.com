@@ -23,7 +23,7 @@ switch(process.env.NODE_ENV) {
   	Logger = logEntries();
     break;
   case 'second':
-    Logger = require('./bunyan');
+    Logger = logEntries();
     break;
   case 'stage':
     Logger = logEntries();
