@@ -17,9 +17,11 @@ mongoose.connect(configUtil.getDBURL(config), function(err) {
 	var app = express();
 	app.locals.home_dir = __dirname;
 
+	// this is to escape all the session creations, logging for
+	// load balancer, uptime bots polling
 	app.use('/up', function (req, res, next) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
-		res.end(process.env.NODE_ENV);
+		return res.end(process.env.NODE_ENV);
 	});
 
 	middleware(app, config);
