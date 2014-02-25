@@ -17,6 +17,11 @@ mongoose.connect(configUtil.getDBURL(config), function(err) {
 	var app = express();
 	app.locals.home_dir = __dirname;
 
+	app.use('/up', function (req, res, next) {
+		res.writeHead(200, {'Content-Type': 'text/plain'});
+		res.end(process.env.NODE_ENV);
+	})
+
 	middleware(app, config);
 	routes(app);
 
