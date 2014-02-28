@@ -20,7 +20,8 @@
 		"username": "",
 		"password": "",
 		"collection": "mysessions",
-		"clear_interval": 3600
+		"clear_interval": 3600,
+		"auto_reconnect": true
 	},
 	"secret": "this is your session secret",
 	"logSettings": {

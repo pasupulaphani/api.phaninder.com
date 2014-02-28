@@ -1,5 +1,5 @@
 block content
 	h1= title
-	if (mode === 'dev' || session.isLoggedIn)
+	if (mode === 'dev' || (typeof session.isLoggedIn != 'undefined' && session.isLoggedIn))
 		p #{error}
 	a(href='/') Take me to the homepage!
