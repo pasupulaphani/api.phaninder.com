@@ -1,5 +1,6 @@
 block content
 	h1= title
-	if (mode === 'dev' || (typeof session.isLoggedIn != 'undefined' && session.isLoggedIn))
+	h4 500: An internal error occurred
+	if (mode === 'dev' || mode === 'second' || mode === 'stage' || (typeof session != 'undefined' && session.isLoggedIn))
 		p #{error}
 	a(href='/') Take me to the homepage!
