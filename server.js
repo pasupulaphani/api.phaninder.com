@@ -28,7 +28,7 @@ mongoose.connect(configUtil.getDBURL(config), function(err) {
 	routes(app);
 
 	port = process.env.VCAP_APP_PORT || process.env.OPENSHIFT_NODEJS_PORT || process.env.port || 3000;
-  ip = process.env.OPENSHIFT_NODEJS_IP;
+	ip = process.env.OPENSHIFT_NODEJS_IP;
 
 	app.listen(port, ip, function() {
 		console.log('listening on port ' + port);
