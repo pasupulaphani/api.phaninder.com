@@ -4,24 +4,47 @@
 		"author": "Phaninder",
 		"email": "pasupulaphani@gmail.com"
 	},
-	"db": "MongoDB",
-	"session_store": "MongoStore",
-	"MongoDB": {
-		"db": "myblog",
-		"host": "localhost",
-		"port": "27017",
-		"username": "",
-		"password": ""
+	"primary": {
+		"DBMS": "MongoDB",
+		"session_store": "MongoStore",
+		"MongoDB": {
+			"db": "myblog",
+			"host": "localhost1",
+			"port": "27017",
+			"username": "",
+			"password": ""
+		},
+		"MongoStore": {
+			"db": "myblog",
+			"host": "localhost",
+			"port": "27017",
+			"username": "",
+			"password": "",
+			"collection": "mysessions",
+			"clear_interval": 3600,
+			"auto_reconnect": true
+		}
 	},
-	"MongoStore": {
-		"db": "myblog",
-		"host": "localhost",
-		"port": "27017",
-		"username": "",
-		"password": "",
-		"collection": "mysessions",
-		"clear_interval": 3600,
-		"auto_reconnect": true
+	"secondary": {
+		"DBMS": "MongoDB",
+		"session_store": "MongoStore",
+		"MongoDB": {
+			"db": "stage_phaninder_pasupulaphani",
+			"host": "troup.mongohq.com",
+			"port": "10044",
+			"username": "appfog",
+			"password": "c4977da0caf143184929c5a010fb4307"
+		},
+		"MongoStore": {
+			"db": "stage_phaninder_pasupulaphani",
+			"host": "troup.mongohq.com",
+			"port": "10044",
+			"username": "appfog",
+			"password": "c4977da0caf143184929c5a010fb4307",
+			"collection": "mysessions",
+			"clear_interval": 3600,
+			"auto_reconnect": true
+		}
 	},
 	"secret": "this is your session secret",
 	"logSettings": {

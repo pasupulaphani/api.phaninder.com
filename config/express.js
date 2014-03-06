@@ -5,6 +5,8 @@ var logger     = require('../config/logger');
 var loggedIn   = require('./middleware/loggedIn');
 var appUtils   = require('../app/helpers/appUtils');
 
+var configUtil = require('../app/helpers/configUtil.js');
+
 module.exports = function (app, config) {
 
 	var static_dir = path.join(app.locals.home_dir + '/public');
@@ -28,7 +30,7 @@ module.exports = function (app, config) {
 	app.use(express.session({
 		secret: config.secret,
 		maxAge: new Date(Date.now() + 36000),
-		store: new MongoStore(config.MongoStore)
+		store: new MongoStore(configUtil.getSessionStore(config, app.locals.db_server))
 	}));
 	app.use(express.bodyParser());
 

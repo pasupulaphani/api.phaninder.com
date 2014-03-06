@@ -1,9 +1,10 @@
-var getDBURL = exports.getDBURL = function (config) {
+var getDBURL = exports.getDBURL = function (config, db_server) {
 	var url = "";
+	var db = eval("config."+db_server)
 
-	switch (config.db) {
+	switch (db.DBMS) {
 		case "MongoDB":
-			url = buildMongoURL(config.MongoDB);
+			url = buildMongoURL(db.MongoDB);
 			break;
 		default:
 			console.log("No config set");
@@ -25,11 +26,13 @@ var buildMongoURL = function (db_props) {
 	return dbUrl;
 }
 
-var getSessionStore = exports.getSessionStore = function (config) {
+var getSessionStore = exports.getSessionStore = function (config, db_server) {
 
-	switch (config.session_store) {
+	var db = eval("config."+db_server)
+
+	switch (db.session_store) {
 		case "MongoStore":
-			return config.MongoStore;
+			return db.MongoStore;
 		default:
 			console.log("No config set");
 	}
