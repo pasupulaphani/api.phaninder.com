@@ -10,11 +10,11 @@ var configUtil = require('./app/helpers/configUtil.js');
 var models     = require('./app/models');
 var routes     = require('./config/routes');
 var middleware = require('./config/express');
+
 var db_server  = "primary";
-var that = this;
 
 mongoose.connection.on("open", function(ref) {
-	console.log("Connected to mongo server!".green);
+	console.log("Connected to " + db_server + " DB!");
 
 	var app = express();
 	app.locals.home_dir = __dirname;
