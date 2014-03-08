@@ -4,48 +4,6 @@
 		"author": "Phaninder",
 		"email": "pasupulaphani@gmail.com"
 	},
-	"primary": {
-		"DBMS": "MongoDB",
-		"session_store": "MongoStore",
-		"MongoDB": {
-			"db": "myblog",
-			"host": "localhost",
-			"port": "27017",
-			"username": "",
-			"password": ""
-		},
-		"MongoStore": {
-			"db": "myblog",
-			"host": "localhost",
-			"port": "27017",
-			"username": "",
-			"password": "",
-			"collection": "mysessions",
-			"clear_interval": 3600,
-			"auto_reconnect": true
-		}
-	},
-	"secondary": {
-		"DBMS": "MongoDB",
-		"session_store": "MongoStore",
-		"MongoDB": {
-			"db": "myblog",
-			"host": "localhost2",
-			"port": "27017",
-			"username": "",
-			"password": ""
-		},
-		"MongoStore": {
-			"db": "myblog",
-			"host": "localhost2",
-			"port": "27017",
-			"username": "",
-			"password": "",
-			"collection": "mysessions",
-			"clear_interval": 3600,
-			"auto_reconnect": true
-		}
-	},
 	"secret": "this is your session secret",
 	"logSettings": {
 		"stdoutLevel": "error",

@@ -11,7 +11,7 @@ var models     = require('./app/models');
 var routes     = require('./config/routes');
 var middleware = require('./config/express');
 
-var db_server  = "primary";
+var db_server  = process.env.DB_ENV || 'dev';
 
 mongoose.connection.on("open", function(ref) {
 	console.log("Connected to " + db_server + " DB!");
@@ -45,8 +45,12 @@ mongoose.connection.on("open", function(ref) {
 
 
 mongoose.connection.on("error", function(err) {
+	console.error('Failed to connect to DB ' + db_server + ' on startup ', err);
+
+	if (['primary', 'secondary'].indexOf(db_server) < 0) {return}
+
 	new_db_server = db_server === "primary" ? "secondary" : "primary"
-	console.error('Failed to connect to DB ' + db_server + ' on startup - trying to ' + new_db_server, err);
+	console.error('Retry connecting to ' + new_db_server);
 	startServerWith(new_db_server)
 });
 
