@@ -11,7 +11,7 @@ var models     = require('./app/models');
 var routes     = require('./config/routes');
 var middleware = require('./config/express');
 
-var db_server  = process.env.DB_ENV || 'dev';
+var db_server  = process.env.DB_ENV || 'primary';
 
 mongoose.connection.on("open", function(ref) {
 	console.log("Connected to " + db_server + " DB!");
@@ -43,7 +43,7 @@ mongoose.connection.on("open", function(ref) {
 });
 
 
-
+// If the connection throws an error
 mongoose.connection.on("error", function(err) {
 	console.error('Failed to connect to DB ' + db_server + ' on startup ', err);
 
@@ -55,6 +55,20 @@ mongoose.connection.on("error", function(err) {
 });
 
 
+// When the connection is disconnected
+mongoose.connection.on('disconnected', function () {
+  console.log('Mongoose default connection to DB :' + db_server + ' disconnected');
+});
+ 
+
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', function() {
+  mongoose.connection.close(function () {
+    console.log('Mongoose default connection with DB :' + db_server + ' is disconnected through app termination');
+    process.exit(0);
+  });
+});
+
 
 var startServerWith = function(l_db_server) {
 	try {
@@ -65,7 +79,6 @@ var startServerWith = function(l_db_server) {
 		console.log("Sever failed " , err.message);
 	}
 };
-
 
 
 startServerWith(db_server);
