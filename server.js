@@ -13,7 +13,7 @@ var middleware = require('./config/express');
 
 var db_server  = process.env.DB_ENV || 'primary';
 
-mongoose.connection.on("open", function(ref) {
+mongoose.connection.on("connected", function(ref) {
 	console.log("Connected to " + db_server + " DB!");
 
 	var app = express();
