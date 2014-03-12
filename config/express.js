@@ -25,12 +25,18 @@ module.exports = function (app, config) {
 		express.logger(process.env.NODE_ENV === 'dev' ? 'dev' : '')
 	);
 
+	session_store_options = configUtil.getSessionStore(config, app.locals.db.server);
 	// maintain session stuff
 	app.use(express.cookieParser());
 	app.use(express.session({
 		secret: config.secret,
 		maxAge: new Date(Date.now() + 36000),
-		store: new MongoStore(configUtil.getSessionStore(config, app.locals.db_server))
+		store: new MongoStore({
+			db              : app.locals.db.db,
+			collection      : session_store_options.collection,
+			clear_interval  : session_store_options.clear_interval,
+			auto_reconnect  : session_store_options.auto_reconnect
+		})
 	}));
 	app.use(express.bodyParser());
 

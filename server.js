@@ -11,14 +11,17 @@ var models     = require('./app/models');
 var routes     = require('./config/routes');
 var middleware = require('./config/express');
 
-var db_server  = process.env.DB_ENV || 'primary';
+var db_server  = process.env.DB_ENV || 'dev';
 
 mongoose.connection.on("connected", function(ref) {
 	console.log("Connected to " + db_server + " DB!");
 
 	var app = express();
 	app.locals.home_dir = __dirname;
-	app.locals.db_server = db_server;
+	app.locals.db = {
+		server: db_server,
+		db    : mongoose.connection.db
+	};
 
 	// this is to escape all the session creations and logging when
 	// load balancer, uptime bots are polling
@@ -26,7 +29,7 @@ mongoose.connection.on("connected", function(ref) {
 		res.writeHead(200, {'Content-Type': 'application/json'});
 		resp = {
 			"env" : process.env.NODE_ENV,
-			"DB"  : app.locals.db_server
+			"DB"  : app.locals.db.server
 		}
 		return res.end(JSON.stringify(resp));
 	});
