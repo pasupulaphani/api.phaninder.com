@@ -57,7 +57,7 @@ mongoose.connection.on("error", function(err) {
 
 	new_db_server = db_server === "primary" ? "secondary" : "primary"
 	console.error('Retry connecting to ' + new_db_server);
-	startServerWith(new_db_server);
+	setTimeout(function(){startServerWith(new_db_server)}, 300);
 });
 
 
