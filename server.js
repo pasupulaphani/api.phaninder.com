@@ -63,17 +63,16 @@ mongoose.connection.on("error", function(err) {
 
 // When the connection is disconnected
 mongoose.connection.on('disconnected', function () {
-  console.log('Mongoose default connection to DB :' + db_server + ' disconnected');
+	console.log('Mongoose default connection to DB :' + db_server + ' disconnected');
 });
- 
 
-// If the Node process ends, close the Mongoose connection
-process.on('SIGINT', function() {
-  mongoose.connection.close(function () {
-    console.log('Mongoose default connection with DB :' + db_server + ' is disconnected through app termination');
-    process.exit(0);
-  });
-});
+
+var gracefulExit = function() { 
+	mongoose.connection.close(function () {
+		console.log('Mongoose default connection with DB :' + db_server + ' is disconnected through app termination');
+		process.exit(0);
+	});
+} 
 
 
 var startServerWith = function(l_db_server) {
@@ -85,6 +84,10 @@ var startServerWith = function(l_db_server) {
 		console.log("Sever failed " , err.message);
 	}
 };
+
+
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
 
 
 startServerWith(db_server);
