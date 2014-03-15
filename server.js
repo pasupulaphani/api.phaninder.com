@@ -11,6 +11,7 @@ var models     = require('./app/models');
 var routes     = require('./config/routes');
 var middleware = require('./config/express');
 
+var server     = null;
 var db_server  = process.env.DB_ENV || 'dev';
 
 mongoose.connection.on("connected", function(ref) {
@@ -40,7 +41,7 @@ mongoose.connection.on("connected", function(ref) {
 	port = process.env.VCAP_APP_PORT || process.env.OPENSHIFT_NODEJS_PORT || process.env.port || 3000;
 	ip = process.env.OPENSHIFT_NODEJS_IP;
 
-	app.listen(port, ip, function() {
+	server = app.listen(port, ip, function() {
 		console.log('listening on port ' + port);
 	});
 });
@@ -52,6 +53,8 @@ mongoose.connection.on("error", function(err) {
 
 	// Manually close the connection to avoid "Trying to open unclosed connection" error
 	mongoose.connection.close();
+	// Manually close server to free port otherwise "Error: listen EADDRINUSE"
+	server.close();
 
 	if (['primary', 'secondary'].indexOf(db_server) < 0) {return}
 
@@ -72,7 +75,7 @@ var gracefulExit = function() {
 		console.log('Mongoose default connection with DB :' + db_server + ' is disconnected through app termination');
 		process.exit(0);
 	});
-} 
+}
 
 
 var startServerWith = function(l_db_server) {
