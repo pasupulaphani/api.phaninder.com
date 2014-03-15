@@ -1,5 +1,6 @@
 var mongoose   = require('mongoose');
 var express    = require('express');
+var Fiber = require('fibers');
 if (['prod', 'second'].indexOf(process.env.NODE_ENV) >= 0) {
 	require('newrelic')
 }
@@ -49,14 +50,12 @@ mongoose.connection.on("connected", function(ref) {
 
 // If the connection throws an error
 mongoose.connection.on("error", function(err) {
-	console.error('Failed to connect to DB ' + db_server + ' on startup ', err);
+	console.error('Failed to connect to DB ' + db_server + ' ERR: ', err);
 
-	// Manually close the connection to avoid "Trying to open unclosed connection" error
-	mongoose.connection.close();
-	// Manually close server to free port otherwise "Error: listen EADDRINUSE"
-	server.close();
+	if (['primary', 'secondary'].indexOf(db_server) < 0) {return gracefulExit();}
 
-	if (['primary', 'secondary'].indexOf(db_server) < 0) {return}
+	// clean up DB connections and free the address/port
+	cleanUp();
 
 	new_db_server = db_server === "primary" ? "secondary" : "primary"
 	console.error('Retry connecting to ' + new_db_server);
@@ -70,11 +69,32 @@ mongoose.connection.on('disconnected', function () {
 });
 
 
-var gracefulExit = function() { 
-	mongoose.connection.close(function () {
-		console.log('Mongoose default connection with DB :' + db_server + ' is disconnected through app termination');
-		process.exit(0);
-	});
+mongoose.connection.on('close', function () {
+	console.log('Mongoose default connection with DB :' + db_server + ' is closed');
+});
+
+
+function cleanUp (callback) {
+
+	Fiber(function () {
+
+		// Manually close server to free port/address otherwise "Error: listen EADDRINUSE"
+		if (server) {
+			server.close( function () {
+				console.log( "Closed out remaining connections.");
+			});
+		};
+
+		// Manually close the connection to avoid "Trying to open unclosed connection" error
+		mongoose.connection.close();
+
+		if (callback) {callback()};
+	}).run();
+}
+
+
+var gracefulExit = function() {
+	cleanUp(function() {process.exit()});
 }
 
 
