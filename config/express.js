@@ -1,13 +1,16 @@
+var mongoose   = require('mongoose');
 var express    = require('express');
 var MongoStore = require('connect-mongo')(express);
 var path       = require('path');
+
+var config     = require('./config');
+var configUtil = require('../app/helpers/configUtil.js');
+var appUtils   = require('../app/helpers/appUtils');
 var logger     = require('../config/logger');
 var loggedIn   = require('./middleware/loggedIn');
-var appUtils   = require('../app/helpers/appUtils');
+var sessionStore   = require('./sessionStore');
 
-var configUtil = require('../app/helpers/configUtil.js');
-
-module.exports = function (app, config) {
+module.exports = function (app) {
 
 	var static_dir = path.join(app.locals.home_dir + '/public');
 
@@ -28,16 +31,7 @@ module.exports = function (app, config) {
 	session_store_options = configUtil.getSessionStore(config, app.locals.db.server);
 	// maintain session stuff
 	app.use(express.cookieParser());
-	app.use(express.session({
-		secret: config.secret,
-		maxAge: new Date(Date.now() + 36000),
-		store: new MongoStore({
-			db              : app.locals.db.db,
-			collection      : session_store_options.collection,
-			clear_interval  : session_store_options.clear_interval,
-			auto_reconnect  : session_store_options.auto_reconnect
-		})
-	}));
+	sessionStore.mongoSessionStore(app);
 	app.use(express.bodyParser());
 
 	// to enable RESTFUL methods

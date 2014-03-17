@@ -10,7 +10,7 @@ var routes     = require('./config/routes');
 var middleware = require('./config/express');
 
 var db         = require('./config/db');
-var db_server = 'dev';
+
 var server = function () {
 	console.log("started");
 	var app = express();
@@ -57,7 +57,6 @@ console.log( "running fiber");
 		server();
 
 		callback && callback(null);
-		console.log("done");
 	}).run();
 }
 
@@ -72,5 +71,4 @@ process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
 
 startServer(function (err) {
 	if (err) throw err;
-	console.log("Server started")
 });
