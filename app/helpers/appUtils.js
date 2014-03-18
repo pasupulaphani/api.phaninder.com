@@ -26,12 +26,25 @@ var validStatus = exports.validStatus = function (status) {
 }
 
 var setStaticDependencies = exports.setStaticDependencies = function (res, url, callback) {
-	Fiber(function () {
+	var fn = Fiber(function () {
 		var resp = handleRequest(url);
-		res.locals.staticJs = resp.staticJSDependencies
-		res.locals.staticCss = resp.staticCSSDependencies
-		callback();
-	}).run();
+		if (resp.statusCode != 200) {
+			res.locals.staticJs  = [];
+			res.locals.staticCss = [];
+		} else {
+			res.locals.staticJs = resp.staticJSDependencies;
+			res.locals.staticCss = resp.staticCSSDependencies;
+		}
+
+		callback && callback();
+	});
+
+	try {
+		fn.run();
+	} catch(e) {
+		console.log('caught error!', e);
+		console.log(e.stack);
+	}
 }
 
 // good way to export an utils module
