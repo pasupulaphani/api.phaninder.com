@@ -6,6 +6,7 @@ var configUtil = require('../app/helpers/configUtil.js');
 
 var sessionStore   = require('./sessionStore');
 var db_server  = process.env.DB_ENV || 'dev';
+var app       = require('../app');
 
 mongoose.connection.on("connected", function(ref) {
 	console.log("Connected to " + db_server + " DB!");
@@ -15,6 +16,8 @@ mongoose.connection.on("connected", function(ref) {
 // If the connection throws an error
 mongoose.connection.on("error", function(err) {
 	console.error('Failed to connect to DB ' + db_server + ' ERR: ', err);
+	mongoose.connection.close();
+	sessionStore.expressSessionStore(app);
 });
 
 

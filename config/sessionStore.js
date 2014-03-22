@@ -21,8 +21,11 @@ var mongoSessionStore = exports.mongoSessionStore = function (app) {
 };
 
 var expressSessionStore = exports.expressSessionStore = function (app) {
+	console.log("called");
 	app.use(express.session({
-		secret: config.secret
+		secret: config.secret,
+		store: null,
+		cookie: { secure: true }
 	}));
 };
 // good way to export an utils module

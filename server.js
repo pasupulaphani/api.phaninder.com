@@ -1,5 +1,4 @@
 var mongoose   = require('mongoose');
-var express    = require('express');
 var Fiber      = require('fibers');
 if (['prod', 'second'].indexOf(process.env.NODE_ENV) >= 0) {
 	require('newrelic')
@@ -11,9 +10,10 @@ var middleware = require('./config/express');
 
 var db         = require('./config/db');
 var db_server = 'dev';
-var server = function () {
+var app       = require('./app');
+
+var appServer = function () {
 	console.log("started");
-	var app = express();
 
 	app.locals.home_dir = __dirname;
 	console.log(db_server);
@@ -21,18 +21,6 @@ var server = function () {
 		server: db_server,
 		db    : mongoose.connection.db
 	};
-
-
-	// this is to escape all the session creations and logging when
-	// load balancer, uptime bots are polling
-	app.use('/up', function (req, res, next) {
-		res.writeHead(200, {'Content-Type': 'application/json'});
-		resp = {
-			"env" : process.env.NODE_ENV,
-			"DB"  : app.locals.db.server
-		}
-		return res.end(JSON.stringify(resp));
-	});
 
 	middleware(app);
 	routes(app);
@@ -43,8 +31,11 @@ var server = function () {
 	server = app.listen(port, ip, function() {
 		console.log('listening on port ' + port);
 	});
-}
 
+	server.addListener('sessionStoreDown', function () {
+		console.log("from sessionStoreDown")
+	});
+}
 
 
 function startServer (callback) {
@@ -54,7 +45,7 @@ console.log( "running fiber");
 		db_server = db();
 		console.log(db_server + ' DB fully initialized');
 
-		server();
+		appServer();
 
 		callback && callback(null);
 		console.log("done");
