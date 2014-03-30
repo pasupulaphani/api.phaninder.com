@@ -1,6 +1,10 @@
-var mongoose   = require('mongoose');
 var express    = require('express');
-var MongoStore = require('connect-mongo')(express);
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var compress   = require('compression');
+var favicon    = require('static-favicon');
+var morgan         = require('morgan');
+var methodOverride = require('method-override');
 var path       = require('path');
 
 var config     = require('./config');
@@ -14,28 +18,29 @@ module.exports = function (app) {
 
 	var static_dir = path.join(app.locals.home_dir + '/public');
 
-	app.use(express.compress());
+	app.use(compress());
 	// static should be above cookie parser to not set cookie for static files
 	app.use(express.static(static_dir));
-	app.use(express.favicon(static_dir + '/favicon.ico'));
+	app.use(favicon(static_dir + '/favicon.ico'));
 
 	//Set views path, template engine and default layout
 	app.set('views', app.locals.home_dir + '/app/views');
 	app.set('view engine', 'jade');
 
 	// basic express logger. Writes to stdout
+	//morgan - previously logger
 	app.use(
-		express.logger(process.env.NODE_ENV === 'dev' ? 'dev' : '')
+		morgan(process.env.NODE_ENV === 'dev' ? 'dev' : '')
 	);
 
 	session_store_options = configUtil.getSessionStore(config, app.locals.db.server);
 	// maintain session stuff
-	app.use(express.cookieParser());
+	app.use(cookieParser());
 	sessionStore.mongoSessionStore(app);
-	app.use(express.bodyParser());
+	app.use(bodyParser());
 
 	// to enable RESTFUL methods
-	app.use(express.methodOverride());
+	app.use(methodOverride());
 
 	app.use(function (req, res, next) {
 

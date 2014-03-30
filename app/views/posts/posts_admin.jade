@@ -12,6 +12,7 @@ dl#post-admin.sub-nav
 
 		form(name="postStatusForm", action="/posts/#{post._id}/status", method="post")
 			input(type="hidden", id="status", name="status", value="")
+			input(type="hidden", name="_method", value="put")
 
 		//- "infoStatus" is bound to locals
 		a.small.secondary.radius.button.dropdown(href='#', data-dropdown='statuslist')= infoStatus[post.status]

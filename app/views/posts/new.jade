@@ -22,10 +22,10 @@ block content
 		section(role='main')
 			#post.row
 				.large-8.columns
-					action = post ? "/posts/"+post._id : "/posts"
-					_method = post ? "post" : "put"
-					title = post ? post.title : ''
-					body = post ? post.body : ''
+					action  = post ? "/posts/"+post._id : "/posts"
+					_method = post ? "put" : "post"
+					title   = post ? post.title : ''
+					body    = post ? post.body : ''
 					form(method="post", action=action)
 						input(type="hidden", name="_method", value=_method)
 						ul

@@ -1,6 +1,8 @@
 var mongoose   = require('mongoose');
 var express    = require('express');
-var MongoStore = require('connect-mongo')(express);
+var session    = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+// var RedisStore = require('connect-redis')(session);
 
 var config     = require('./config');
 var configUtil = require('../app/helpers/configUtil.js');
@@ -8,7 +10,7 @@ var configUtil = require('../app/helpers/configUtil.js');
 var mongoSessionStore = exports.mongoSessionStore = function (app) {
 	session_store_options = configUtil.getSessionStore(config, app.locals.db.server);
 
-	app.use(express.session({
+	app.use(session({
 		secret: config.secret,
 		maxAge: new Date(Date.now() + 36000),
 		store: new MongoStore({
@@ -22,7 +24,7 @@ var mongoSessionStore = exports.mongoSessionStore = function (app) {
 
 var expressSessionStore = exports.expressSessionStore = function (app) {
 	console.log("called");
-	app.use(express.session({
+	app.use(session({
 		secret: config.secret,
 		store: null,
 		cookie: { secure: true }

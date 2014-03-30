@@ -24,7 +24,7 @@ module.exports = function handleRequest(url) {
 		}
 	}).on('error', function(e) {
 		console.log("error: ", e);
-		var result = {statusCode: res.statusCode};
+		var result = {statusCode: e.code};
 		fiber.run(result);
 	});
 

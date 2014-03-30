@@ -17,6 +17,7 @@ mongoose.connection.on("connected", function(ref) {
 mongoose.connection.on("error", function(err) {
 	console.error('Failed to connect to DB ' + db_server + ' ERR: ', err);
 	mongoose.connection.close();
+
 	sessionStore.expressSessionStore(app);
 });
 
