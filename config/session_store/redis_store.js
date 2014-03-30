@@ -18,14 +18,5 @@ var redisSessionStore = function (app) {
 	}));
 };
 
-// this is not working for some wierd reason
-var expressSessionStore = exports.expressSessionStore = function (app) {
-	console.log("called");
-	app.use(session({
-		secret: config.secret,
-		store: null,
-		cookie: { secure: true }
-	}));
-};
 
 module.exports = redisSessionStore;

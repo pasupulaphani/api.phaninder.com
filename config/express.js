@@ -1,18 +1,21 @@
-var express    = require('express');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var compress   = require('compression');
-var favicon    = require('static-favicon');
+var express        = require('express');
+
+// middleware modules
+var cookieParser   = require('cookie-parser');
+var bodyParser     = require('body-parser');
+var compress       = require('compression');
+var favicon        = require('static-favicon');
 var morgan         = require('morgan');
 var methodOverride = require('method-override');
-var path       = require('path');
 
-var config     = require('./config');
-var configUtil = require('../app/helpers/configUtil.js');
-var appUtils   = require('../app/helpers/appUtils');
-var logger     = require('../config/logger');
-var loggedIn   = require('./middleware/loggedIn');
-var sessionStore   = require('./sessionStore');
+var path           = require('path');
+
+var config         = require('./config');
+var configUtil     = require('../app/helpers/configUtil.js');
+var appUtils       = require('../app/helpers/appUtils');
+var logger         = require('../config/logger');
+var loggedIn       = require('./middleware/loggedIn');
+var sessionStore   = require('./session_store/mongo_store');
 
 module.exports = function (app) {
 
@@ -36,7 +39,7 @@ module.exports = function (app) {
 	session_store_options = configUtil.getSessionStore(config, app.locals.db.server);
 	// maintain session stuff
 	app.use(cookieParser());
-	sessionStore.mongoSessionStore(app);
+	sessionStore(app);
 	app.use(bodyParser());
 
 	// to enable RESTFUL methods
