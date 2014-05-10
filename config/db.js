@@ -4,7 +4,6 @@ var Fiber      = require('fibers');
 var config     = require('./config');
 var configUtil = require('../app/helpers/configUtil.js');
 
-var sessionStore   = require('./sessionStore');
 var db_server  = process.env.DB_ENV || 'dev';
 var app       = require('../app');
 
@@ -18,14 +17,12 @@ mongoose.connection.on("error", function(err) {
 	console.error('Failed to connect to DB ' + db_server + ' ERR: ', err);
 	mongoose.connection.close();
 
-	sessionStore.expressSessionStore(app);
 });
 
 
 // When the connection is disconnected
 mongoose.connection.on('disconnected', function () {
 	console.log('Mongoose default connection to DB :' + db_server + ' disconnected');
-	sessionStore.expressSessionStore(app);
 });
 
 

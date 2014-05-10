@@ -15,7 +15,7 @@ var configUtil     = require('../app/helpers/configUtil.js');
 var appUtils       = require('../app/helpers/appUtils');
 var logger         = require('../config/logger');
 var loggedIn       = require('./middleware/loggedIn');
-var sessionStore   = require('./session_store/mongo_store');
+var sessionStore   = require('./session_store/memory_store');
 
 module.exports = function (app) {
 
@@ -41,6 +41,9 @@ module.exports = function (app) {
 	app.use(cookieParser());
 	sessionStore(app);
 	app.use(bodyParser());
+
+// TODO: https://github.com/expressjs/csurf/blob/master/index.js
+// csrf protection
 
 	// to enable RESTFUL methods
 	app.use(methodOverride());
