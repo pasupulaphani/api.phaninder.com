@@ -1,11 +1,26 @@
 phaninder.com
 =============
 
-NodeJs app
+Stack
 -------
- * express
- * mongodb
-and few other
+ * Persistence store: MongoDB hosted on MongoHq (primary)/MongoLab (secondary)
+ * Session store: MongoDB (moving to Redis)
+ * Backend: Node.js
+ * AngularJS on the client
+ * CSS based on Foundation
+
+Web framework
+-------
+ * Expressjs
+
+ 
+Build
+-------
+ * Grunt.js
+
+Deployment
+-------
+ * Capistrano
 
 Config:  config/env/env.json format.
 
