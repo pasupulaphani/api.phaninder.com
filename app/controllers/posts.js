@@ -60,9 +60,7 @@ exports.show = function (req, res, next) {
 
 // new post : new
 exports.new = function (req, res, next) {
-	res.render("posts/new.jade", {
-		edit: {raw: req.param('raw')}
-	});
+	res.render("posts/new.jade");
 };
 
 
@@ -78,8 +76,7 @@ exports.edit = function (req, res, next) {
 
 	res.render('posts/new.jade',
 		{
-			post: post,
-			edit: {raw: req.param('raw')}
+			post: post
 		}
 	);
 };

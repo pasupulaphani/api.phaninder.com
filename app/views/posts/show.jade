@@ -5,7 +5,8 @@ block content
 		function parsePostBody() {
 			$("#raw-post-body").children("script").remove();
 			post_body = $("#raw-post-body").text();
-			post_html = $.parseHTML( post_body )
+			post_html = marked( post_body )
+			//- post_html = $.parseHTML( post_body )
 			$("#post-body").append( post_html );
 		}
 	.row
@@ -19,7 +20,7 @@ block content
 					#raw-post-body(style = 'display: none')= post.body
 					p
 
-					if (loginShow || session.isLoggedIn)
+					if (session.isLoggedIn)
 						include ./posts_admin
 		include ./search
 	include ../layout/bottom

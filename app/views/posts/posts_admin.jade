@@ -25,12 +25,7 @@ dl#post-admin.sub-nav
 			- }
 
 	dd#post-edit
-			a.small.secondary.button.split(href="/posts/#{post._id}/edit") Edit Post
-				span(data-dropdown='mode')
-			br
-			ul#mode.f-dropdown(data-dropdown-content='data-dropdown-content')
-				li
-					a(href='/posts/#{post._id}/edit?raw=1') Edit Raw Post
+			a.small.secondary.button(href="/posts/#{post._id}/edit") Edit Post
 
 // This info is to just a fix to show dropdown buttons list
 // more info : https://github.com/zurb/foundation/issues/3922

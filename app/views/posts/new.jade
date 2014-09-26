@@ -2,26 +2,10 @@ extends ../layout/top
 
 block content
 
-	if (session.isLoggedIn && !edit.raw)
-		script(src='//tinymce.cachefly.net/4.0/tinymce.min.js')
-		script.
-			tinymce.init({
-				selector: "textarea",
-				plugins: [
-					"advlist autolink lists link image charmap print preview anchor",
-					"searchreplace visualblocks code fullscreen",
-					"insertdatetime media table contextmenu paste"
-				],
-				toolbar: "insertfile undo redo | styleselect | bold italic \
-									| alignleft aligncenter alignright alignjustify \
-									| link image | bullist numlist outdent indent   \
-									| code | visualblocks preview fullscreen"
-			});
-
 	.row
 		section(role='main')
 			#post.row
-				.large-8.columns
+				.large-10.columns
 					- var action  = post ? "/posts/"+post._id : "/posts"
 					- var _method = post ? "put" : "post"
 					- var title   = post ? post.title : ''
@@ -34,13 +18,53 @@ block content
 								input#title(name="title", type="text", value="#{title}")
 							li
 								lable(for="body") Body
-								textarea#body(name="body", style="height: 300px; width: 100%;")= unescape(body)
+								textarea#post-body(name="body", style="display: none")= unescape(body)
+								div#epiceditor
 							br
 							li
 								input.tiny.button(type="submit", value="Save")
 								| &nbsp;&nbsp;&nbsp;
 								a(href=action) Cancel
-		//- disabling as it hinders tynemice full screen edit. (really annoying)
 		//- include ./search
 	include ../layout/bottom
 
+	if (session.isLoggedIn)
+		script(src=staticHost+"/js/src/vendor/epiceditor.js")
+		script.
+			var opts = {
+				container: 'epiceditor',
+				textarea: 'post-body',
+				basePath: 'epiceditor',
+				clientSideStorage: false,
+				localStorageName: 'epiceditor',
+				useNativeFullscreen: true,
+				parser: marked,
+				file: {
+					name: 'epiceditor',
+					defaultContent: '',
+					autoSave: false
+				},
+				theme: {
+					base: '#{staticHost}/css/src/vendor/epiceditor/epiceditor.css',
+					preview: '#{staticHost}/css/src/vendor/epiceditor/github.css',
+					editor: '#{staticHost}/css/src/vendor/epiceditor/epic-dark.css'
+				},
+				button: {
+					preview: true,
+					fullscreen: true,
+					bar: "auto"
+				},
+				focusOnLoad: false,
+				shortcut: {
+					modifier: 18,
+					fullscreen: 70,
+					preview: 80
+				},
+				string: {
+					togglePreview: 'Toggle Preview Mode',
+					toggleEdit: 'Toggle Edit Mode',
+					toggleFullscreen: 'Enter Fullscreen'
+				},
+				autogrow: true
+			}
+			var editor = new EpicEditor(opts).load();

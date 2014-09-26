@@ -61,18 +61,21 @@ else
 	//- created by grunt tasks
 	link(rel='stylesheet', href=staticHost+'/css/main.min.css')
 
-//- jquery js is now sourced at head due to dependency issues
+//- below js is now sourced at head due to dependency issues
 if (mode === "dev")
 	script(src=staticHost+"/js/src/vendor/jquery.js").
 else
 	//- Note: google hosted version doesn't have sizzle.js
 	script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js').
 
+script(src=staticHost+"/js/src/vendor/marked.min.js").
+
 //if lt IE 9
 	script(src='https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js')
 	script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
 
 script(src=staticHost+"/js/src/vendor/custom.modernizr.js").
+
 script.
 	// google analytics
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
