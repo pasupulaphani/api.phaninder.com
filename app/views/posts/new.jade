@@ -22,10 +22,10 @@ block content
 		section(role='main')
 			#post.row
 				.large-8.columns
-					action  = post ? "/posts/"+post._id : "/posts"
-					_method = post ? "put" : "post"
-					title   = post ? post.title : ''
-					body    = post ? post.body : ''
+					- var action  = post ? "/posts/"+post._id : "/posts"
+					- var _method = post ? "put" : "post"
+					- var title   = post ? post.title : ''
+					- var body    = post ? post.body : ''
 					form(method="post", action=action)
 						input(type="hidden", name="_method", value=_method)
 						ul
@@ -38,11 +38,8 @@ block content
 							br
 							li
 								input.tiny.button(type="submit", value="Save")
-								&nbsp
-								&nbsp
-								&nbsp
+								| &nbsp;&nbsp;&nbsp;
 								a(href=action) Cancel
-
 		//- disabling as it hinders tynemice full screen edit. (really annoying)
 		//- include ./search
 	include ../layout/bottom
