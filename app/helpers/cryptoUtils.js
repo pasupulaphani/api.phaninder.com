@@ -1,5 +1,4 @@
 var crypto  = require('crypto');
-var format  = require('biguint-format');
 
 var hash = exports.hash = function (pass, salt) {
 	var hash = crypto.createHash('sha512');

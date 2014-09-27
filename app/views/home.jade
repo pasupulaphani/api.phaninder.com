@@ -12,7 +12,7 @@ block content
 							each post in posts
 								li
 									h2
-										a(href="/posts/#{post.id}")= post.title
+										a(href="/posts/#{post.id}/#{post.seo_url || ''}")= post.title
 
 		include ./posts/search
 	include layout/bottom
