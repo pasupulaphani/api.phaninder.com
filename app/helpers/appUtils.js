@@ -47,5 +47,9 @@ var setStaticDependencies = exports.setStaticDependencies = function (res, url, 
 	}
 }
 
+var buildSeoUrl = exports.buildSeoUrl = function(req) {
+	return req.protocol + '://' + req.headers.host + req.originalUrl + '/' + req.post.seo_url
+};
+
 // good way to export an utils module
 module.exports = exports;

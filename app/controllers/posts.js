@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 
-var myEsc    = require('../helpers/escape.js');
-var appUtils = require('../helpers/appUtils.js');
-var logger   = require('../../config/logger');
+var myEsc       = require('../helpers/escape.js');
+var appUtils    = require('../helpers/appUtils.js');
+var cryptoUtils = require('../helpers/cryptoUtils');
+var logger      = require('../../config/logger');
 
 // todo: did refactor controller 
 // but still can make changes by adding autorization to routes
@@ -54,6 +55,11 @@ exports.post = function(req, res, next, id) {
 // show the post : show
 exports.show = function (req, res, next) {
 	if (!req.post) return next(); // 404
+	console.log(req)
+	if (req.post.seo_url != req.param('seo_url')) {
+		res.redirect(301, appUtils.buildSeoUrl(req));
+		return;
+	};
 	res.render('posts/show.jade', { post: req.post});
 };
 
@@ -91,10 +97,11 @@ exports.create = function (req, res, next) {
 	if (!title) throw new Error('title is must');
 	logger.info({req: req}, 'Creating post: %s', title);
 	Post.create({
-		_id : myEsc.urlSeoEsc(title).toLowerCase(),
-		title : title,
-		body : body,
-		user : user
+		_id     : cryptoUtils.getUID(6),
+		seo_url : myEsc.urlSeoEsc(title).toLowerCase(),
+		title   : title,
+		body    : body,
+		user    : user
 	}, function (err, post) {
 		if (err) throw next(err);
 		res.redirect('/posts/' + post.id);
@@ -115,6 +122,7 @@ exports.update = function (req, res, next) {
 	var query = {_id: post.id, user: req.session.user}
 
 	post.update({
+		seo_url : myEsc.urlSeoEsc(req.param('title')).toLowerCase(),
 		title: req.param('title'),
 		body: req.param('body'),
 		modified: Date.now()

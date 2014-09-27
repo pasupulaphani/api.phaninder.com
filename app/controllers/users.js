@@ -2,7 +2,7 @@ var mongoose    = require('mongoose');
 var User        = mongoose.model('User');
 
 var cleanString = require('../helpers/cleanString');
-var hash        = require('../helpers/hash');
+var cryptoUtils = require('../helpers/cryptoUtils');
 var crypto      = require('crypto');
 
 
@@ -35,7 +35,7 @@ exports.create = function (req, res, next) {
 
 			var user = {_id: email};
 			user.salt = bytes.toString('utf8');
-			user.hash = hash(pass, user.salt);
+			user.hash = cryptoUtils.hash(pass, user.salt);
 
 			User.create(user, function (err, new_user) {
 				if (err) {
@@ -73,7 +73,7 @@ exports.login = function (req, res) {
 
 		if (user) {
 			// success
-			if (user.hash === hash(pass, user.salt)) {
+			if (user.hash === cryptoUtils.hash(pass, user.salt)) {
 				req.session.isLoggedIn = true;
 				req.session.user = email;
 				console.log("user "+email+" has loggedin");

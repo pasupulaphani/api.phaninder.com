@@ -3,6 +3,7 @@ var appUtil = require('../helpers/appUtils.js');
 
 var PostSchema = mongoose.Schema({
 	_id : {type: String, trim: true, lowercase: true},
+	seo_url : {type: String, trim: true, lowercase: true},
 	title : {type: String, trim: true, unique: true},
 	body : {type: String},
 	created : {type: Date, default: Date.now},
