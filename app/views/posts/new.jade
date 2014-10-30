@@ -9,7 +9,9 @@ block content
 					- var action  = post ? "/posts/"+post._id : "/posts"
 					- var _method = post ? "put" : "post"
 					- var title   = post ? post.title : ''
+					- var seo_url = post ? post.seo_url : ''
 					- var body    = post ? post.body : ''
+					- var created = post ? post.created : Date.now.toString()
 					form(method="post", action=action)
 						input(type="hidden", name="_method", value=_method)
 						ul
@@ -17,9 +19,16 @@ block content
 								lable(for="title") Title
 								input#title(name="title", type="text", value="#{title}")
 							li
+								lable(for="title") Seo URL
+								input#seo_url(name="seo_url", type="text", value="#{seo_url}")
+							li
 								lable(for="body") Body
 								textarea#post-body(name="body", style="display: none")= unescape(body)
 								div#epiceditor
+							br
+							li
+								lable(for="created") Created
+								input.datepicker#created(name="created", type="text", value="#{created}")
 							br
 							li
 								input.tiny.button(type="submit", value="Save")
@@ -68,3 +77,11 @@ block content
 				autogrow: true
 			}
 			var editor = new EpicEditor(opts).load();
+
+		//- datepicker stuff
+		link(rel='stylesheet', href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css")
+		script(src="http://code.jquery.com/ui/1.10.4/jquery-ui.js")
+		script.
+			var temp = $( "#created" ).val();
+			$( "#created" ).val(fomatDate(temp))
+			$( ".datepicker" ).datepicker();

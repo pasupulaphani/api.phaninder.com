@@ -122,9 +122,10 @@ exports.update = function (req, res, next) {
 	var query = {_id: post.id, user: req.session.user}
 
 	post.update({
-		seo_url : myEsc.urlSeoEsc(req.param('title')).toLowerCase(),
+		seo_url : req.param('seo_url'),
 		title: req.param('title'),
 		body: req.param('body'),
+		created: (new Date(req.param('created'))),
 		modified: Date.now()
 	}, function (err, numAffected) {
 		if (err) return next(err);
