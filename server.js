@@ -12,7 +12,7 @@ var db         = require('./config/db');
 var app       = require('./app');
 
 var appServer = function () {
-	console.log("started");
+	console.log("Initializing app server");
 
 	app.locals.home_dir = __dirname;
 
@@ -43,7 +43,6 @@ console.log( "running fiber");
 		appServer();
 
 		callback && callback(null);
-		console.log("done");
 	}).run();
 }
 

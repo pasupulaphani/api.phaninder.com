@@ -36,7 +36,8 @@ mongoose.connection.on('close', function () {
 function _connectDB (db_name, callback) {
 	mongoose.connect(configUtil.getDBURL(config, db.server), function (err) {
 		if (err) {
-			db.server = db_name === "dev" ? "stage" : "dev"
+			var given_db = process.env.DB_ENV || 'dev';
+			db.server = db_name === given_db ? "secondary" : given_db
 			console.error('Retry connecting to ' + db.server);
 			return _connectDB(db.server, callback)
 		} else {
