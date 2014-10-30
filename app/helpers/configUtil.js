@@ -1,5 +1,5 @@
 var getDBURL = exports.getDBURL = function (config, db_server) {
-	console.log(config + " " + db_server)
+
 	var url = "";
 	var db = eval("config."+db_server)
 
@@ -28,9 +28,10 @@ var buildMongoURL = function (db_props) {
 }
 
 var getSessionStore = exports.getSessionStore = function (config, db_server) {
-console.log(config + " " + db_server)
+
 	var db = eval("config."+db_server)
 
+	console.info("configure session store: " + db.session_store)
 	switch (db.session_store) {
 		case "MongoStore":
 			return db.MongoStore;

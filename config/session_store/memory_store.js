@@ -11,7 +11,10 @@ var expressSessionStore = function (app) {
 	app.use(session({
 		secret: config.secret,
 		store: new MemoryStore(),
-		key: 'express.sid'
+		name: 'express.sid',
+		proxy: true,
+    	resave: true,
+    	saveUninitialized: true
 	}));
 };
 

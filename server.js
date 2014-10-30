@@ -9,7 +9,7 @@ var routes     = require('./config/routes');
 var middleware = require('./config/express');
 
 var db         = require('./config/db');
-var app       = require('./app');
+var app        = require('./app');
 
 var appServer = function () {
 	console.log("Initializing app server");
@@ -35,7 +35,6 @@ var appServer = function () {
 
 
 function startServer (callback) {
-console.log( "running fiber");
 
 	Fiber(function () {
 		db_server = db.connect();

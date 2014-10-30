@@ -40,7 +40,10 @@ module.exports = function (app) {
 	// maintain session stuff
 	app.use(cookieParser());
 	sessionStore(app);
-	app.use(bodyParser());
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({
+		extended: true
+	}));
 
 // TODO: https://github.com/expressjs/csurf/blob/master/index.js
 // csrf protection
