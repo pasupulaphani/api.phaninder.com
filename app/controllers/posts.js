@@ -93,12 +93,18 @@ exports.create = function (req, res, next) {
 	var title = req.param('title');
 	var body = req.param('body');
 	var user = req.session.user;
+	var seo_url = req.param('seo_url');
+
+	if (seo_url == "") {
+		seo_url = title;
+	};
 
 	if (!title) throw new Error('title is must');
 	logger.info({req: req}, 'Creating post: %s', title);
+
 	Post.create({
 		_id     : cryptoUtils.getUID(6),
-		seo_url : myEsc.urlSeoEsc(title).toLowerCase(),
+		seo_url : myEsc.urlSeoEsc(seo_url).toLowerCase(),
 		title   : title,
 		body    : body,
 		user    : user
@@ -113,16 +119,21 @@ exports.create = function (req, res, next) {
 exports.update = function (req, res, next) {
 	if (!req.post) return next(); // 404
 	var post = req.post;
+	var seo_url = req.param('seo_url');
 
 	// valid user
 	if (post.user._id != req.session.user) {
 		return res.send(403);
 	}
 
+	if (seo_url == "") {
+		seo_url = req.param('title');
+	};
+
 	var query = {_id: post.id, user: req.session.user}
 
 	post.update({
-		seo_url : req.param('seo_url'),
+		seo_url : myEsc.urlSeoEsc(seo_url).toLowerCase(),
 		title: req.param('title'),
 		body: req.param('body'),
 		created: (new Date(req.param('created'))),
