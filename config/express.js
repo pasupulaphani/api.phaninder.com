@@ -33,7 +33,7 @@ module.exports = function (app) {
 	// basic express logger. Writes to stdout
 	//morgan - previously logger
 	app.use(
-		morgan(process.env.NODE_ENV === 'dev' ? 'dev' : '')
+		morgan(process.env.NODE_ENV === 'dev' ? 'dev' : 'combined')
 	);
 
 	session_store_options = configUtil.getSessionStore(config, app.locals.db_server);
@@ -69,7 +69,7 @@ module.exports = function (app) {
 			site    : config.site,
 			mode    : process.env.NODE_ENV,
 			url     : {
-				host: req.host,
+				host: req.hostname,
 				path: req.path},
 			staticHost : config.staticHost
 		};
