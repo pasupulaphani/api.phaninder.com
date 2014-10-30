@@ -36,7 +36,7 @@ module.exports = function (app) {
 		morgan(process.env.NODE_ENV === 'dev' ? 'dev' : '')
 	);
 
-	session_store_options = configUtil.getSessionStore(config, app.locals.db.server);
+	session_store_options = configUtil.getSessionStore(config, app.locals.db_server);
 	// maintain session stuff
 	app.use(cookieParser());
 	sessionStore(app);

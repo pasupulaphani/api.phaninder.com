@@ -9,18 +9,14 @@ var routes     = require('./config/routes');
 var middleware = require('./config/express');
 
 var db         = require('./config/db');
-var db_server = 'dev';
 var app       = require('./app');
 
 var appServer = function () {
 	console.log("started");
 
 	app.locals.home_dir = __dirname;
-	console.log(db_server);
-	app.locals.db       = {
-		server: db_server,
-		db    : mongoose.connection.db
-	};
+
+	app.locals.db_server = db.getName();
 
 	middleware(app);
 	routes(app);
@@ -42,8 +38,7 @@ function startServer (callback) {
 console.log( "running fiber");
 
 	Fiber(function () {
-		db_server = db();
-		console.log(db_server + ' DB fully initialized');
+		db_server = db.connect();
 
 		appServer();
 
@@ -54,9 +49,12 @@ console.log( "running fiber");
 
 
 var gracefulExit = function() {
-	cleanUp(function() {process.exit()});
-}
 
+	mongoose.connection.close();
+
+	console.log("Exiting process")
+	process.exit();
+}
 
 // If the Node process ends, close the Mongoose connection
 process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);

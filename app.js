@@ -8,7 +8,7 @@ app.use('/up', function (req, res, next) {
 	res.writeHead(200, {'Content-Type': 'application/json'});
 	resp = {
 		"env" : process.env.NODE_ENV,
-		"DB"  : app.locals.db.server
+		"DB"  : app.locals.db_server
 	}
 	return res.end(JSON.stringify(resp));
 });

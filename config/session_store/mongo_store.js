@@ -7,7 +7,7 @@ var configUtil = require('../../app/helpers/configUtil.js');
 
 var mongoSessionStore = function (app) {
 	
-	session_store_options = configUtil.getSessionStore(config, app.locals.db.server);
+	session_store_options = configUtil.getSessionStore(config, app.locals.db_server);
 
 	app.use(session({
 		secret: config.secret,
