@@ -19,7 +19,7 @@ exports.all = function (req, res, next) {
 
 	Post.find({'status':status}).sort({'created': -1}).exec(function (err, posts) {
 		if (err) throw next(err);
-		res.render('home.jade', {posts: posts});
+		res.json({posts: posts});
 	});
 };
 
