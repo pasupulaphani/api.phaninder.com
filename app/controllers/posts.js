@@ -19,6 +19,9 @@ exports.all = function (req, res, next) {
 
 	Post.find({'status':status}).sort({'created': -1}).exec(function (err, posts) {
 		if (err) throw next(err);
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+		res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 		res.json({posts: posts});
 	});
 };
