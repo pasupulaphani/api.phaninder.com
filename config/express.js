@@ -50,8 +50,16 @@ module.exports = function (app) {
 		extended: true
 	}));
 
+var csrfValue = function(req) {
+  var token = (req.body && req.body._csrf)
+    || (req.query && req.query._csrf)
+    || (req.headers['x-csrf-token'])
+    || (req.headers['x-xsrf-token']);
+  return token;
+};
+
 	// enable csrf
-	app.use(csrf());
+	app.use(csrf({value: csrfValue}));
 	app.use(cors.allowCrossDomain);
 	app.use(helmet());
 
@@ -80,6 +88,9 @@ module.exports = function (app) {
 				path: req.path},
 			staticHost : config.staticHost
 		};
+
+		// angularJs looks for this cookie by default
+		res.cookie('XSRF-TOKEN', req.session._csrf);
 
 		if (loggedIn) {res.locals.infoStatus = appUtils.infoStatus }
 
