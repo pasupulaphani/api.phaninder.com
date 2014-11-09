@@ -7,14 +7,19 @@ var compress       = require('compression');
 var favicon        = require('static-favicon');
 var morgan         = require('morgan');
 var methodOverride = require('method-override');
+var csrf           = require('csurf')
+var helmet         = require('helmet');
 
+// others
 var path           = require('path');
 
+// custom
 var config         = require('./config');
 var configUtil     = require('../app/helpers/configUtil.js');
 var appUtils       = require('../app/helpers/appUtils');
 var logger         = require('../config/logger');
 var loggedIn       = require('./middleware/loggedIn');
+var cors           = require('./middleware/cors');
 var sessionStore   = require('./session_store/memory_store');
 
 module.exports = function (app) {
@@ -38,15 +43,17 @@ module.exports = function (app) {
 
 	session_store_options = configUtil.getSessionStore(config, app.locals.db_server);
 	// maintain session stuff
-	app.use(cookieParser());
+	app.use(cookieParser(config.secret));
 	sessionStore(app);
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({
 		extended: true
 	}));
 
-// TODO: https://github.com/expressjs/csurf/blob/master/index.js
-// csrf protection
+	// enable csrf
+	app.use(csrf());
+	app.use(cors.allowCrossDomain);
+	app.use(helmet());
 
 	// to enable RESTFUL methods
 	app.use(methodOverride());

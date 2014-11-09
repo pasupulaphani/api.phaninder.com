@@ -8,6 +8,7 @@ var models     = require('./app/models');
 var routes     = require('./config/routes');
 var middleware = require('./config/express');
 
+var config     = require('./config/config');
 var db         = require('./config/db');
 var app        = require('./app');
 
@@ -26,6 +27,10 @@ var appServer = function () {
 
 	server = app.listen(port, ip, function() {
 		console.log('listening on port ' + port);
+
+		// Todo: set gid, uid in config
+		config.gid ? process.setgid(config.gid) : '';
+		config.uid ? process.setuid(config.uid) : '';
 	});
 
 	server.addListener('sessionStoreDown', function () {
