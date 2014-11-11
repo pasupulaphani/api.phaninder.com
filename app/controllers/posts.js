@@ -20,7 +20,7 @@ exports.all = function (req, res, next) {
 	Post.find({'status':status}).sort({'created': -1}).exec(function (err, posts) {
 		if (err) throw next(err);
 
-		res.json({posts: posts});
+		res.json(posts);
 	});
 };
 
@@ -33,7 +33,7 @@ var go = exports.go = function (req, res, next, id) {
 
 		if (!post || (!req.session.user && !appUtils.dispPost(post.status))) return next(); // 404
 
-		res.render('posts/show.jade', { post: post});
+		res.json([post]);
 	});
 };
 
@@ -61,7 +61,7 @@ exports.show = function (req, res, next) {
 		res.redirect(301, appUtils.buildSeoUrl(req));
 		return;
 	};
-	res.render('posts/show.jade', { post: req.post});
+	res.json([req.post]);
 };
 
 
