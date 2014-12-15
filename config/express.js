@@ -94,15 +94,7 @@ var csrfValue = function(req) {
 
 		if (loggedIn) {res.locals.infoStatus = appUtils.infoStatus }
 
-		// blocking operation but only for dev
-		if (process.env.NODE_ENV === 'dev') {
-			var url = config.staticHost+'/static_dev_dependencies.json';
-			appUtils.setStaticDependencies(res, url, next)
-		} else {
-			next();
-		}
-
-		//next();
+		next();
 	})
 
 
