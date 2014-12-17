@@ -51,11 +51,7 @@ if (mode === "dev")
 	-   return file.replace(/^public/,"");
 	- }
 
-	//- under development we source individual files.
-	//- staticCss is only made available in dev mode.
-	- for (var i = 0; i < staticCss.length; ++i) {
-		link(rel='stylesheet', href=staticHost+makeUrl(staticCss[i]))
-	- }
+
 
 else
 	//- created by grunt tasks

@@ -62,7 +62,7 @@ exports.create = function (req, res, next) {
 
 exports.login = function (req, res) {
 	var email = cleanString(req.param('email'));
-	var pass = cleanString(req.param('pass'));
+	var pass = cleanString(req.param('password'));
 	if (!email || !pass) {
 		return invalid();
 	}
@@ -71,20 +71,20 @@ exports.login = function (req, res) {
 	User.findById(email, function (err, user) {
 		if (err) throw next(err);
 
-		if (user) {
-			// success
-			if (user.hash === cryptoUtils.hash(pass, user.salt)) {
-				req.session.isLoggedIn = true;
-				req.session.user = email;
-				console.log("user "+email+" has loggedin");
-				return res.redirect('/');
-			}
+		if (user && user.hash === cryptoUtils.hash(pass, user.salt)) {
+
+			req.session.isLoggedIn = true;
+			req.session.user = email;
+			console.log("user "+email+" has loggedin");
+			return res.redirect('/');
+
 		} else {
 			return invalid();
 		}
 	});
 
 	function invalid() {
+
 		res.render(
 			'home.jade',
 			{
