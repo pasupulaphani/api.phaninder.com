@@ -18,7 +18,6 @@ var config = require('./config');
 var configUtil = require('../app/helpers/configUtil.js');
 var appUtils = require('../app/helpers/appUtils');
 var logger = require('../config/logger');
-var loggedIn = require('./middleware/loggedIn');
 var cors = require('./middleware/cors');
 var sessionStore = require('./session_store/memory_store');
 
@@ -51,9 +50,9 @@ module.exports = function(app) {
     }));
 
     // enable csrf
-    // app.use(csrf({
-    //     value: configUtil.csrfValue
-    // }));
+    app.use(csrf({
+        value: configUtil.csrfValue
+    }));
     app.use(cors.allowCrossDomain);
     app.use(helmet());
 
@@ -88,12 +87,11 @@ module.exports = function(app) {
             staticHost: config.staticHost
         };
 
-        if (loggedIn) {
-            res.locals.infoStatus = appUtils.infoStatus
-        }
+        res.locals.infoStatus = appUtils.infoStatus
 
+        console.log("user: "+req.session.user)
         // angularJs looks for this cookie by default
-        // res.cookie('XSRF-TOKEN', req.csrfToken());
+        res.cookie('XSRF-TOKEN', req.csrfToken(), {domain: '.local-phaninder.com'});
 
         // intercept OPTIONS method
         if ('OPTIONS' == req.method) {

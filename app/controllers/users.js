@@ -76,7 +76,7 @@ exports.login = function (req, res) {
 			req.session.isLoggedIn = true;
 			req.session.user = email;
 			console.log("user "+email+" has loggedin");
-			return res.redirect('/');
+			return res.sendStatus(200);
 
 		} else {
 			return invalid();
@@ -84,14 +84,7 @@ exports.login = function (req, res) {
 	});
 
 	function invalid() {
-
-		res.render(
-			'home.jade',
-			{
-				invalid: true,
-				loginShow: true
-			}
-		);
+		res.status(401).end();
 	}
 };
 

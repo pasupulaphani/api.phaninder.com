@@ -44,6 +44,7 @@ var getSessionStore = exports.getSessionStore = function(config, db_server) {
 
 var csrfValue = exports.csrfValue = function(req) {
     var token = (req.body && req.body._csrf) || (req.query && req.query._csrf) || (req.headers['x-csrf-token']) || (req.headers['x-xsrf-token']);
+
     return token;
 };
 
