@@ -57,10 +57,6 @@ exports.post = function(req, res, next, id) {
 exports.show = function (req, res, next) {
 	if (!req.post) return next(); // 404
 
-	if (req.post.seo_url != req.param('seo_url')) {
-		res.redirect(301, appUtils.buildSeoUrl(req));
-		return;
-	};
 	res.json([req.post]);
 };
 
