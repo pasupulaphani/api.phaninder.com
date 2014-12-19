@@ -6,11 +6,6 @@ var cryptoUtils = require('../helpers/cryptoUtils');
 var crypto      = require('crypto');
 
 
-exports.loginShow = function (req, res) {
-	res.render('home.jade', {loginShow: true});
-};
-
-
 exports.createShow = function (req, res) {
 	res.render('users/signup.jade');
 };
@@ -88,3 +83,12 @@ exports.login = function (req, res) {
 	}
 };
 
+
+exports.getLoginStatus = function (req, res) {
+
+	if (req.session && req.session.user) {
+		return res.sendStatus(200);
+	} else {
+		return res.sendStatus(401);
+	}
+};
