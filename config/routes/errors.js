@@ -5,17 +5,7 @@ module.exports = function(app) {
 	// 404s
 	app.use(function(req, res, next) {
 		res.status(404);
-
-		if (req.accepts('html')) {
-			return res.render('404.jade', {title: '404: Page Not Found'});
-		}
-
-		if (req.accepts('json')) {
-			return res.send("{status : 404, error : 'Page not found'");
-		}
-
-		res.type('txt')
-		res.send("404 : page not found")
+		res.send("Page not found")
 	})
 
 	// 500
