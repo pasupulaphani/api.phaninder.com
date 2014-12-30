@@ -154,7 +154,7 @@ exports.patch = function (req, res, next) {
 
 	// valid user
 	if (post.user._id != req.session.user) {
-		return res.send(403);
+		return res.sendStatus(403);
 	}
 
 	var query = {_id: post.id, user: req.session.user}
@@ -164,7 +164,7 @@ exports.patch = function (req, res, next) {
 	}, function (err, numAffected) {
 		if (err) return next(err);
 		if (0 === numAffected) return next(err);
-		res.redirect("/posts/" + post.id);
+		res.sendStatus(200);
 	});
 };
 
@@ -179,7 +179,7 @@ exports.destroy = function (req, res, next) {
 
 		// valid user
 		if (post.user != req.session.user) {
-			return res.send(403);
+			return res.sendStatus(403);
 		}
 
 		post.remove(function (err) {
