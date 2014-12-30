@@ -8,10 +8,11 @@ module.exports = function (app) {
 	app.get('/posts/:id/edit', loggedIn, posts.edit);
 	app.get('/posts/:id/:seo_url?', posts.show);
 
+
 	app.post('/posts', loggedIn, posts.create);
 
 	app.put('/posts/:id', loggedIn, posts.update);
-	app.put('/posts/:id/status', loggedIn, posts.setStatus);
+	app.patch('/posts/:id/:seo_url?', loggedIn, posts.patch);
 
 	app.delete('/posts/:id', loggedIn, posts.destroy);
 

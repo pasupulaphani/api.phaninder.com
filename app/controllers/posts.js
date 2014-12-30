@@ -33,6 +33,7 @@ var go = exports.go = function (req, res, next, id) {
 
 		if (!post || (!req.session.user && !appUtils.dispPost(post.status))) return next(); // 404
 
+		post.user = post.user.id;
 		res.json([post]);
 	});
 };
@@ -48,6 +49,7 @@ exports.post = function(req, res, next, id) {
 		if (!post || (!req.session.user && !appUtils.dispPost(post.status))) return next(); // 404
 
 		req.post = post;
+		req.post.user = post.user.id;
 		next();
 	});
 };
@@ -143,7 +145,7 @@ exports.update = function (req, res, next) {
 };
 
 // set status of a post: see Post model
-exports.setStatus = function (req, res, next) {
+exports.patch = function (req, res, next) {
 	if (!req.post) return next(); // 404
 	var post   = req.post;
 	var status = req.param('status');

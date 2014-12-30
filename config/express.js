@@ -91,7 +91,7 @@ module.exports = function(app) {
 
         console.log("user: "+req.session.user)
         // angularJs looks for this cookie by default
-        res.cookie('XSRF-TOKEN', req.csrfToken(), {domain: '.local-phaninder.com'});
+        res.cookie('XSRF-TOKEN', req.csrfToken());
 
         // intercept OPTIONS method
         if ('OPTIONS' == req.method) {
