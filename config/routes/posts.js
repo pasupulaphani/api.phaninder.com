@@ -4,10 +4,7 @@ var loggedIn = require('../middleware/loggedIn');
 module.exports = function (app) {
 
 	app.get('/posts', posts.all);
-	app.get('/posts/new', loggedIn, posts.new);
-	app.get('/posts/:id/edit', loggedIn, posts.edit);
 	app.get('/posts/:id/:seo_url?', posts.show);
-
 
 	app.post('/posts', loggedIn, posts.create);
 

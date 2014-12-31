@@ -63,84 +63,61 @@ exports.show = function (req, res, next) {
 };
 
 
-// new post : new
-exports.new = function (req, res, next) {
-	res.render("posts/new.jade");
-};
+var formatPostObj = function (post) {
 
+	post.seo_url = myEsc.urlSeoEsc(post.seo_url).toLowerCase();
+	post.created = (new Date(post.created));
+	post.modified = Date.now();
 
-// edit a post : edit
-exports.edit = function (req, res, next) {
-	if (!req.post) return next(); // 404
-	var post = req.post;
-
-	// valid user
-	if (post.user._id != req.session.user) {
-		return res.send(403);
-	}
-
-	res.render('posts/new.jade',
-		{
-			post: post
-		}
-	);
-};
-
+	return post;
+}
 
 // insert a post : create
 exports.create = function (req, res, next) {
-	var title = req.param('title');
-	var body = req.param('body');
-	var user = req.session.user;
-	var seo_url = req.param('seo_url');
 
-	if (seo_url == "") {
-		seo_url = title;
+	var user = req.session.user;
+	var new_post = req.body;
+
+	if (!new_post.title) throw new Error('title is must');
+
+	if (!new_post.seo_url || new_post.seo_url === '') {
+		new_post.seo_url = new_post.title;
 	};
 
-	if (!title) throw new Error('title is must');
-	logger.info({req: req}, 'Creating post: %s', title);
+	logger.info({req: req}, 'Creating post: %s', new_post.title);
 
-	Post.create({
-		_id     : cryptoUtils.getUID(6),
-		seo_url : myEsc.urlSeoEsc(seo_url).toLowerCase(),
-		title   : title,
-		body    : body,
-		user    : user
-	}, function (err, post) {
+	new_post.created = Date.now();
+	new_post._id = cryptoUtils.getUID(6);
+	new_post.user = user;
+
+	new_post = formatPostObj(new_post);
+
+	Post.create(new_post, function (err, post) {
 		if (err) throw next(err);
-		res.redirect('/posts/' + post.id);
+		res.json(post);
 	});
 };
 
 
 // update a post : update
 exports.update = function (req, res, next) {
+
 	if (!req.post) return next(); // 404
+
 	var post = req.post;
-	var seo_url = req.param('seo_url');
 
 	// valid user
-	if (post.user._id != req.session.user) {
-		return res.send(403);
+	if (post.user != req.session.user) {
+		return res.sendStatus(403);
 	}
 
-	if (seo_url == "") {
-		seo_url = req.param('title');
-	};
+	var edit_post = formatPostObj(req.body);
+	delete edit_post._id;
 
-	var query = {_id: post.id, user: req.session.user}
-
-	post.update({
-		seo_url : myEsc.urlSeoEsc(seo_url).toLowerCase(),
-		title: req.param('title'),
-		body: req.param('body'),
-		created: (new Date(req.param('created'))),
-		modified: Date.now()
-	}, function (err, numAffected) {
+	post.update(edit_post, function (err, numAffected) {
 		if (err) return next(err);
 		if (0 === numAffected) return next(err);
-		res.redirect("/posts/"+post.id);
+		res.sendStatus(200);
 	});
 };
 
