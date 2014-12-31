@@ -153,7 +153,7 @@ exports.patch = function (req, res, next) {
 	if (!appUtils.validStatus(status)) throw new Error('status must be P, M, U or T');
 
 	// valid user
-	if (post.user._id != req.session.user) {
+	if (post.user != req.session.user) {
 		return res.sendStatus(403);
 	}
 
