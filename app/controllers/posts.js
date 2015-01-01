@@ -18,7 +18,7 @@ exports.all = function (req, res, next) {
 	if (!req.session.user && !appUtils.dispPost(status)) return next(); // 404
 
 	Post.find({'status':status}).sort({'created': -1}).exec(function (err, posts) {
-		if (err) throw next(err);
+		if (err) return next(err);
 
 		res.json(posts);
 	});
@@ -78,7 +78,7 @@ exports.create = function (req, res, next) {
 	var user = req.session.user;
 	var new_post = req.body;
 
-	if (!new_post.title) throw new Error('title is must');
+	if (!new_post.title) return res.status(400).send({ error: 'title is must' });
 
 	if (!new_post.seo_url || new_post.seo_url === '') {
 		new_post.seo_url = new_post.title;
@@ -86,14 +86,14 @@ exports.create = function (req, res, next) {
 
 	logger.info({req: req}, 'Creating post: %s', new_post.title);
 
-	new_post.created = Date.now();
+	new_post.created = new_post.created || Date.now();
 	new_post._id = cryptoUtils.getUID(6);
 	new_post.user = user;
 
 	new_post = formatPostObj(new_post);
 
 	Post.create(new_post, function (err, post) {
-		if (err) throw next(err);
+		if (err) return next(err);
 		res.json(post);
 	});
 };
@@ -127,7 +127,7 @@ exports.patch = function (req, res, next) {
 	var post   = req.post;
 	var status = req.param('status');
 
-	if (!appUtils.validStatus(status)) throw new Error('status must be P, M, U or T');
+	if (!appUtils.validStatus(status)) return res.status(400).send({ error: 'status must be P, M, U or T' });
 
 	// valid user
 	if (post.user != req.session.user) {

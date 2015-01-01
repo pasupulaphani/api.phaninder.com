@@ -19,14 +19,14 @@ exports.create = function (req, res, next) {
 	}
 
 	User.findById(email, function (err, user) {
-		if (err) throw next(err);
+		if (err) return next(err);
 
 		if (user) {
 			return res.render('users/signup.jade', {exists: true});
 		}
 
 		crypto.randomBytes(16, function (err, bytes) {
-			if (err) throw next(err);
+			if (err) return next(err);
 
 			var user = {_id: email};
 			user.salt = bytes.toString('utf8');
@@ -64,7 +64,7 @@ exports.login = function (req, res) {
 	email = email.toLowerCase();
 
 	User.findById(email, function (err, user) {
-		if (err) throw next(err);
+		if (err) return next(err);
 
 		if (user && user.hash === cryptoUtils.hash(pass, user.salt)) {
 
