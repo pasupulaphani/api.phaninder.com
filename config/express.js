@@ -42,7 +42,7 @@ module.exports = function(app) {
 
     session_store_options = configUtil.getSessionStore(config, app.locals.db_server);
     // maintain session stuff
-    app.use(cookieParser(config.secret,));
+    app.use(cookieParser(config.secret));
     sessionStore(app);
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
