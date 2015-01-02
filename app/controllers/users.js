@@ -62,7 +62,8 @@ exports.login = function (req, res) {
 		return invalid();
 	}
 	email = email.toLowerCase();
-
+console.log(req)
+console.log(res)
 	User.findById(email, function (err, user) {
 		if (err) return next(err);
 
