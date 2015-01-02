@@ -10,5 +10,6 @@
 		"logFile": "./log/myblog-dev.log",
 		"logFileLevel": "debug"
 	},
-	"staticHost": "http://localhost:9000"
+	"staticHost": "http://localhost:9000",
+	"domain": "localhost"
 }

@@ -42,7 +42,9 @@ module.exports = function(app) {
 
     session_store_options = configUtil.getSessionStore(config, app.locals.db_server);
     // maintain session stuff
-    app.use(cookieParser(config.secret));
+    app.use(cookieParser(config.secret, {
+        domain: config.domain
+    }));
     sessionStore(app);
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
@@ -91,7 +93,7 @@ module.exports = function(app) {
 
         console.log("user: "+req.session.user)
         // angularJs looks for this cookie by default
-        res.cookie('XSRF-TOKEN', req.csrfToken());
+        res.cookie('XSRF-TOKEN', req.csrfToken(), { domain: config.domain});
 
         // intercept OPTIONS method
         if ('OPTIONS' == req.method) {
