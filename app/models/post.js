@@ -7,6 +7,7 @@ var PostSchema = mongoose.Schema({
 	title : {type: String, trim: true, unique: true},
 	banner : {type: String, trim: true},
 	preface : {type: String, trim: true},
+	short_desc: {type: String, trim: true},
 	body : {type: String},
 	tags : {type: Array, default: []},
 	created : {type: Date, default: Date.now},

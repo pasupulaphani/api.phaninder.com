@@ -11,5 +11,5 @@
 		"logFileLevel": "debug"
 	},
 	"staticHost": "http://localhost:9000",
-	"domain": "localhost"
+	"domain": ""
 }
