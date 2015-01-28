@@ -10,6 +10,6 @@
 		"logFile": "./log/myblog-dev.log",
 		"logFileLevel": "debug"
 	},
-	"staticHost": "http://localhost:9000",
-	"domain": ""
+	"staticHost": "http://local-phaninder.com",
+	"domain": ".local-phaninder.com"
 }
