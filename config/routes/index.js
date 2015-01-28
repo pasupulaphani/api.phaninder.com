@@ -6,10 +6,6 @@ var index    = require('../../app/controllers/index');
 
 module.exports = function(app) {
 
-	app.get('/proxy.html', function (req, res) {
-		return res.render('proxy.jade');
-	});
-
 	app.get('/', index.home);
 	app.get('/about', index.about);
 	app.get('/contact', index.contact);
