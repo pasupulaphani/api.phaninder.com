@@ -20,3 +20,4 @@ config/env/*prod.json
 config/env/*
 
 cap-deploy/*
+.c9
