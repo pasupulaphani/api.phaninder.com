@@ -1014,6 +1014,101 @@
       "from": "node-logentries@0.1.4",
       "resolved": "https://registry.npmjs.org/node-logentries/-/node-logentries-0.1.4.tgz"
     },
+    "seo": {
+      "version": "0.0.13",
+      "from": "seo@*",
+      "resolved": "https://registry.npmjs.org/seo/-/seo-0.0.13.tgz",
+      "dependencies": {
+        "underscore": {
+          "version": "1.6.0",
+          "from": "underscore@>=1.6.0 <1.7.0",
+          "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.6.0.tgz"
+        },
+        "phantom": {
+          "version": "0.6.6",
+          "from": "phantom@>=0.6.1 <0.7.0",
+          "resolved": "https://registry.npmjs.org/phantom/-/phantom-0.6.6.tgz",
+          "dependencies": {
+            "dnode": {
+              "version": "1.2.0",
+              "from": "dnode@>=1.2.0 <1.3.0",
+              "resolved": "https://registry.npmjs.org/dnode/-/dnode-1.2.0.tgz",
+              "dependencies": {
+                "dnode-protocol": {
+                  "version": "0.2.2",
+                  "from": "dnode-protocol@>=0.2.2 <0.3.0",
+                  "resolved": "https://registry.npmjs.org/dnode-protocol/-/dnode-protocol-0.2.2.tgz"
+                },
+                "jsonify": {
+                  "version": "0.0.0",
+                  "from": "jsonify@>=0.0.0 <0.1.0",
+                  "resolved": "https://registry.npmjs.org/jsonify/-/jsonify-0.0.0.tgz"
+                },
+                "weak": {
+                  "version": "0.3.3",
+                  "from": "weak@>=0.3.0 <0.4.0",
+                  "resolved": "https://registry.npmjs.org/weak/-/weak-0.3.3.tgz",
+                  "dependencies": {
+                    "bindings": {
+                      "version": "1.2.1",
+                      "from": "bindings@*",
+                      "resolved": "https://registry.npmjs.org/bindings/-/bindings-1.2.1.tgz"
+                    },
+                    "nan": {
+                      "version": "1.2.0",
+                      "from": "nan@>=1.2.0 <1.3.0",
+                      "resolved": "https://registry.npmjs.org/nan/-/nan-1.2.0.tgz"
+                    }
+                  }
+                }
+              }
+            },
+            "shoe": {
+              "version": "0.0.15",
+              "from": "shoe@>=0.0.10 <0.1.0",
+              "resolved": "https://registry.npmjs.org/shoe/-/shoe-0.0.15.tgz",
+              "dependencies": {
+                "sockjs": {
+                  "version": "0.3.7",
+                  "from": "sockjs@0.3.7",
+                  "resolved": "https://registry.npmjs.org/sockjs/-/sockjs-0.3.7.tgz",
+                  "dependencies": {
+                    "node-uuid": {
+                      "version": "1.3.3",
+                      "from": "node-uuid@1.3.3",
+                      "resolved": "https://registry.npmjs.org/node-uuid/-/node-uuid-1.3.3.tgz"
+                    },
+                    "faye-websocket": {
+                      "version": "0.4.4",
+                      "from": "faye-websocket@0.4.4",
+                      "resolved": "https://registry.npmjs.org/faye-websocket/-/faye-websocket-0.4.4.tgz"
+                    }
+                  }
+                },
+                "sockjs-client": {
+                  "version": "0.0.0-unreleasable"
+                }
+              }
+            },
+            "win-spawn": {
+              "version": "2.0.0",
+              "from": "win-spawn@>=2.0.0 <2.1.0",
+              "resolved": "https://registry.npmjs.org/win-spawn/-/win-spawn-2.0.0.tgz"
+            },
+            "traverse": {
+              "version": "0.6.6",
+              "from": "traverse@>=0.6.3 <0.7.0",
+              "resolved": "https://registry.npmjs.org/traverse/-/traverse-0.6.6.tgz"
+            }
+          }
+        },
+        "q": {
+          "version": "1.0.1",
+          "from": "q@>=1.0.1 <1.1.0",
+          "resolved": "https://registry.npmjs.org/q/-/q-1.0.1.tgz"
+        }
+      }
+    },
     "static-favicon": {
       "version": "1.0.2",
       "from": "static-favicon@1.0.2"
