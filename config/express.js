@@ -12,7 +12,6 @@ var helmet = require('helmet');
 
 // others
 var path = require('path');
-var seo  = require('seo');
 
 // custom
 var config = require('./config');
@@ -40,17 +39,6 @@ module.exports = function(app) {
     app.use(
         morgan(process.env.NODE_ENV === 'dev' ? 'dev' : 'combined')
     );
-
-// app.use(new seo({
-//   cacheDirectory: path.resolve(process.cwd(), '.seo-cache'),
-//   routes: require('./routes/seo-routes'),
-//   requestURL: 'http://local-phaninder.com',
-//   pageModifier: function (page, callback) {
-//     // This function can be used to modify a page before it is cached
-//     // `page` is an instance of PhantomJS's Page object. For an example
-//     // see `test/middleware.test.js`
-//   }
-// }).init());
 
     session_store_options = configUtil.getSessionStore(config, app.locals.db_server);
     // maintain session stuff
