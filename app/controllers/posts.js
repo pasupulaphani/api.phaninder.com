@@ -80,14 +80,10 @@ exports.create = function (req, res, next) {
 
 	if (!new_post.title) return res.status(400).send({ error: 'title is must' });
 
-	if (!new_post.seo_url || new_post.seo_url === '') {
-		new_post.seo_url = new_post.title;
-	};
-
 	logger.info({req: req}, 'Creating post: %s', new_post.title);
 
 	new_post.created = new_post.created || Date.now();
-	new_post._id = cryptoUtils.getUID(6);
+	new_post._id = new_post._id || cryptoUtils.getUID(6);
 	new_post.user = user;
 
 	new_post = formatPostObj(new_post);
