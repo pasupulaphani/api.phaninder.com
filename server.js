@@ -22,11 +22,11 @@ var appServer = function () {
 	middleware(app);
 	routes(app);
 
-	port = process.env.VCAP_APP_PORT || process.env.OPENSHIFT_NODEJS_PORT || process.env.port || 3000;
-	ip = process.env.OPENSHIFT_NODEJS_IP;
+	app.set('port', process.env.VCAP_APP_PORT || process.env.OPENSHIFT_NODEJS_PORT || process.env.port || 3000);
+	app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 
-	server = app.listen(port, ip, function() {
-		console.log('listening on port ' + port);
+	server = app.listen(app.get('port') ,app.get('ip'), function() {
+		console.log('listening on port ' + app.get('port'));
 
 		// Todo: set gid, uid in config
 		config.gid ? process.setgid(config.gid) : '';
