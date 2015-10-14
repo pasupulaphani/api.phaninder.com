@@ -27,7 +27,7 @@
     "email-validator": "~0.1.2",
     "express": "~4.10.1",
     "express-session": "~1.9.1",
-    "fibers": "~1.0.2",
+    "fibers": "~1.0.7",
     "helmet": "^0.5.1",
     "jade": "~1.7.0",
     "method-override": "~1.0.2",
