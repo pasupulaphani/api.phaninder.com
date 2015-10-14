@@ -1,5 +1,6 @@
 var mongoose   = require('mongoose');
 var Fiber      = require('fibers');
+var http       = require('http');
 if (['prod', 'second'].indexOf(process.env.NODE_ENV) >= 0) {
 	require('newrelic')
 }
@@ -25,7 +26,7 @@ var appServer = function () {
 	app.set('port', process.env.VCAP_APP_PORT || process.env.OPENSHIFT_NODEJS_PORT || process.env.port || 3000);
 	app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 
-	server = app.listen(app.get('port') ,app.get('ip'), function() {
+	server = http.createServer(app).listen(app.get('port') ,app.get('ip'), function() {
 		console.log('listening on port ' + app.get('port'));
 
 		// Todo: set gid, uid in config
