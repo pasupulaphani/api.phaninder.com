@@ -24,7 +24,7 @@ function getPJson() {
 }
 
 function getDb() {
-	var db = require(conf_dir + '/db.json');
+	var db = require(conf_dir + 'db.json');
 	return db;
 }
 

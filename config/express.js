@@ -4,7 +4,6 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compress = require('compression');
-var favicon = require('static-favicon');
 var morgan = require('morgan');
 var methodOverride = require('method-override');
 var csrf = require('csurf')
@@ -28,14 +27,12 @@ module.exports = function(app) {
     app.use(compress());
     // static should be above cookie parser to not set cookie for static files
     app.use(express.static(static_dir));
-    app.use(favicon(static_dir + '/favicon.ico'));
 
     //Set views path, template engine and default layout
     app.set('views', app.locals.home_dir + '/app/views');
     app.set('view engine', 'jade');
 
     // basic express logger. Writes to stdout
-    //morgan - previously logger
     app.use(
         morgan(process.env.NODE_ENV === 'dev' ? 'dev' : 'combined')
     );
