@@ -28,10 +28,6 @@ module.exports = function(app) {
     // static should be above cookie parser to not set cookie for static files
     app.use(express.static(static_dir));
 
-    //Set views path, template engine and default layout
-    app.set('views', app.locals.home_dir + '/app/views');
-    app.set('view engine', 'jade');
-
     // basic express logger. Writes to stdout
     app.use(
         morgan(process.env.NODE_ENV === 'dev' ? 'dev' : 'combined')
